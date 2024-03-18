@@ -1,0 +1,25 @@
+mockname: "{{ .InterfaceName }}"
+filename: "{{ .InterfaceName | snakecase }}.go"
+outpkg: "{{ .PackageName }}mocks"
+dir: "{{ .PackageName }}mocks"
+
+packages:
+  github.com/yandex-cloud/go-genproto/yandex/cloud/endpoint:
+    interfaces:
+      ApiEndpointServiceServer:
+
+  github.com/yandex-cloud/go-genproto/yandex/cloud/compute/v1:
+    interfaces:
+      InstanceServiceServer:
+      ZoneServiceServer:
+      DiskServiceServer:
+
+  github.com/yandex-cloud/go-genproto/yandex/cloud/iam/v1:
+    interfaces:
+      IamTokenServiceServer:
+      ServiceAccountServiceServer:
+
+  github.com/yandex-cloud/go-genproto/yandex/cloud/resourcemanager/v1:
+    interfaces:
+      CloudServiceServer:
+      FolderServiceServer:

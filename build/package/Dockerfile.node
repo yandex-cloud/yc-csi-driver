@@ -1,0 +1,19 @@
+FROM golang:1.21 AS builder
+
+RUN apt install git
+
+COPY . /go/src/github.com/yandex-cloud/yc-csi-driver
+WORKDIR /go/src/github.com/yandex-cloud/yc-csi-driver
+
+RUN export REVISION=$(git rev-parse HEAD)
+
+RUN CGO_ENABLED=0 go build -a -ldflags '-X github.com/yandex-cloud/yc-csi-driver/pkg/version.gitRevision=${REVISION}' \
+    -o /go/bin/yc-csi-driver-node github.com/yandex-cloud/yc-csi-driver/cmd/node
+
+FROM alpine:3.19
+
+RUN apk add --no-cache util-linux e2fsprogs blkid e2fsprogs-extra btrfs-progs
+
+COPY --from=builder /go/bin/yc-csi-driver-node /bin/yc-csi-driver-node
+
+ENTRYPOINT ["/bin/yc-csi-driver-node"]

@@ -1,0 +1,468 @@
+# github.com/container-storage-interface/spec v1.8.0
+## explicit; go 1.18
+github.com/container-storage-interface/spec/lib/go/csi
+# github.com/davecgh/go-spew v1.1.1
+## explicit
+github.com/davecgh/go-spew/spew
+# github.com/fsnotify/fsnotify v1.6.0
+## explicit; go 1.16
+github.com/fsnotify/fsnotify
+# github.com/ghodss/yaml v1.0.0
+## explicit
+github.com/ghodss/yaml
+# github.com/go-logr/logr v1.2.4
+## explicit; go 1.16
+github.com/go-logr/logr
+# github.com/golang-jwt/jwt/v4 v4.5.0
+## explicit; go 1.16
+github.com/golang-jwt/jwt/v4
+# github.com/golang/protobuf v1.5.3
+## explicit; go 1.9
+github.com/golang/protobuf/jsonpb
+github.com/golang/protobuf/proto
+github.com/golang/protobuf/protoc-gen-go/descriptor
+github.com/golang/protobuf/ptypes
+github.com/golang/protobuf/ptypes/any
+github.com/golang/protobuf/ptypes/duration
+github.com/golang/protobuf/ptypes/timestamp
+github.com/golang/protobuf/ptypes/wrappers
+# github.com/google/go-cmp v0.6.0
+## explicit; go 1.13
+github.com/google/go-cmp/cmp
+github.com/google/go-cmp/cmp/internal/diff
+github.com/google/go-cmp/cmp/internal/flags
+github.com/google/go-cmp/cmp/internal/function
+github.com/google/go-cmp/cmp/internal/value
+# github.com/google/uuid v1.4.0
+## explicit
+github.com/google/uuid
+# github.com/hashicorp/errwrap v1.0.0
+## explicit
+github.com/hashicorp/errwrap
+# github.com/hashicorp/go-multierror v1.0.0
+## explicit
+github.com/hashicorp/go-multierror
+# github.com/kr/text v0.2.0
+## explicit
+# github.com/kubernetes-csi/csi-test/v4 v4.4.0
+## explicit; go 1.16
+github.com/kubernetes-csi/csi-test/v4/pkg/sanity
+github.com/kubernetes-csi/csi-test/v4/utils
+# github.com/mitchellh/go-testing-interface v1.14.1
+## explicit; go 1.14
+github.com/mitchellh/go-testing-interface
+# github.com/moby/sys/mountinfo v0.6.2
+## explicit; go 1.16
+github.com/moby/sys/mountinfo
+# github.com/nxadm/tail v1.4.8
+## explicit; go 1.13
+github.com/nxadm/tail
+github.com/nxadm/tail/ratelimiter
+github.com/nxadm/tail/util
+github.com/nxadm/tail/watch
+github.com/nxadm/tail/winfile
+# github.com/onsi/ginkgo v1.16.5
+## explicit; go 1.16
+github.com/onsi/ginkgo
+github.com/onsi/ginkgo/config
+github.com/onsi/ginkgo/formatter
+github.com/onsi/ginkgo/internal/codelocation
+github.com/onsi/ginkgo/internal/containernode
+github.com/onsi/ginkgo/internal/failer
+github.com/onsi/ginkgo/internal/global
+github.com/onsi/ginkgo/internal/leafnodes
+github.com/onsi/ginkgo/internal/remote
+github.com/onsi/ginkgo/internal/spec
+github.com/onsi/ginkgo/internal/spec_iterator
+github.com/onsi/ginkgo/internal/specrunner
+github.com/onsi/ginkgo/internal/suite
+github.com/onsi/ginkgo/internal/testingtproxy
+github.com/onsi/ginkgo/internal/writer
+github.com/onsi/ginkgo/reporters
+github.com/onsi/ginkgo/reporters/stenographer
+github.com/onsi/ginkgo/reporters/stenographer/support/go-colorable
+github.com/onsi/ginkgo/reporters/stenographer/support/go-isatty
+github.com/onsi/ginkgo/types
+# github.com/onsi/gomega v1.30.0
+## explicit; go 1.18
+github.com/onsi/gomega
+github.com/onsi/gomega/format
+github.com/onsi/gomega/internal
+github.com/onsi/gomega/internal/gutil
+github.com/onsi/gomega/matchers
+github.com/onsi/gomega/matchers/support/goraph/bipartitegraph
+github.com/onsi/gomega/matchers/support/goraph/edge
+github.com/onsi/gomega/matchers/support/goraph/node
+github.com/onsi/gomega/matchers/support/goraph/util
+github.com/onsi/gomega/types
+# github.com/opencontainers/selinux v1.10.0
+## explicit; go 1.13
+github.com/opencontainers/selinux/go-selinux
+github.com/opencontainers/selinux/pkg/pwalk
+github.com/opencontainers/selinux/pkg/pwalkdir
+# github.com/pmezard/go-difflib v1.0.0
+## explicit
+github.com/pmezard/go-difflib/difflib
+# github.com/stretchr/objx v0.5.0
+## explicit; go 1.12
+github.com/stretchr/objx
+# github.com/stretchr/testify v1.8.4
+## explicit; go 1.20
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/mock
+github.com/stretchr/testify/require
+# github.com/yandex-cloud/go-genproto v0.0.0-20231204110853-8db1d6a6f340
+## explicit
+github.com/yandex-cloud/go-genproto/yandex/cloud
+github.com/yandex-cloud/go-genproto/yandex/cloud/access
+github.com/yandex-cloud/go-genproto/yandex/cloud/ai/stt/v2
+github.com/yandex-cloud/go-genproto/yandex/cloud/ai/translate/v2
+github.com/yandex-cloud/go-genproto/yandex/cloud/ai/vision/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/api
+github.com/yandex-cloud/go-genproto/yandex/cloud/apploadbalancer/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/backup/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/billing/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/cdn/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/certificatemanager/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/compute/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/compute/v1/instancegroup
+github.com/yandex-cloud/go-genproto/yandex/cloud/containerregistry/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/dataproc/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/datasphere/v2
+github.com/yandex-cloud/go-genproto/yandex/cloud/datatransfer/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/datatransfer/v1/endpoint
+github.com/yandex-cloud/go-genproto/yandex/cloud/dns/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/endpoint
+github.com/yandex-cloud/go-genproto/yandex/cloud/iam/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/iam/v1/awscompatibility
+github.com/yandex-cloud/go-genproto/yandex/cloud/iot/broker/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/iot/devices/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/k8s/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/kms/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/kms/v1/asymmetricencryption
+github.com/yandex-cloud/go-genproto/yandex/cloud/kms/v1/asymmetricsignature
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadbalancer/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadtesting/agent/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadtesting/api/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadtesting/api/v1/agent
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadtesting/api/v1/common
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadtesting/api/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadtesting/api/v1/report
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadtesting/api/v1/report/table
+github.com/yandex-cloud/go-genproto/yandex/cloud/loadtesting/api/v1/test
+github.com/yandex-cloud/go-genproto/yandex/cloud/lockbox/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/logging/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/marketplace/licensemanager/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/marketplace/v1/metering
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/clickhouse/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/clickhouse/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/elasticsearch/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/elasticsearch/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/greenplum/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/kafka/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/mongodb/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/mongodb/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/mysql/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/mysql/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/opensearch/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/opensearch/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/postgresql/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/postgresql/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/redis/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/redis/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/sqlserver/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/sqlserver/v1/config
+github.com/yandex-cloud/go-genproto/yandex/cloud/monitoring/v3
+github.com/yandex-cloud/go-genproto/yandex/cloud/oauth
+github.com/yandex-cloud/go-genproto/yandex/cloud/operation
+github.com/yandex-cloud/go-genproto/yandex/cloud/organizationmanager/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/organizationmanager/v1/saml
+github.com/yandex-cloud/go-genproto/yandex/cloud/quota
+github.com/yandex-cloud/go-genproto/yandex/cloud/reference
+github.com/yandex-cloud/go-genproto/yandex/cloud/resourcemanager/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/serverless/apigateway/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/serverless/apigateway/websocket/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/serverless/containers/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/serverless/functions/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/serverless/mdbproxy/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/serverless/triggers/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/storage/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/vpc/v1
+github.com/yandex-cloud/go-genproto/yandex/cloud/ydb/v1
+# github.com/yandex-cloud/go-sdk v0.0.0-20231204111359-25f2607c41ac
+## explicit; go 1.15
+github.com/yandex-cloud/go-sdk
+github.com/yandex-cloud/go-sdk/dial
+github.com/yandex-cloud/go-sdk/gen/ai/stt
+github.com/yandex-cloud/go-sdk/gen/ai/translate
+github.com/yandex-cloud/go-sdk/gen/ai/vision
+github.com/yandex-cloud/go-sdk/gen/apiendpoint
+github.com/yandex-cloud/go-sdk/gen/apigateway
+github.com/yandex-cloud/go-sdk/gen/apigateway/websocket
+github.com/yandex-cloud/go-sdk/gen/apploadbalancer
+github.com/yandex-cloud/go-sdk/gen/backup
+github.com/yandex-cloud/go-sdk/gen/billing
+github.com/yandex-cloud/go-sdk/gen/cdn
+github.com/yandex-cloud/go-sdk/gen/certificatemanager
+github.com/yandex-cloud/go-sdk/gen/certificatemanagerdata
+github.com/yandex-cloud/go-sdk/gen/compute
+github.com/yandex-cloud/go-sdk/gen/compute/instancegroup
+github.com/yandex-cloud/go-sdk/gen/containerregistry
+github.com/yandex-cloud/go-sdk/gen/containers
+github.com/yandex-cloud/go-sdk/gen/dataproc
+github.com/yandex-cloud/go-sdk/gen/datasphere
+github.com/yandex-cloud/go-sdk/gen/datatransfer
+github.com/yandex-cloud/go-sdk/gen/dns
+github.com/yandex-cloud/go-sdk/gen/functions
+github.com/yandex-cloud/go-sdk/gen/iam
+github.com/yandex-cloud/go-sdk/gen/iam/awscompatibility
+github.com/yandex-cloud/go-sdk/gen/iot/broker
+github.com/yandex-cloud/go-sdk/gen/iot/brokerdata
+github.com/yandex-cloud/go-sdk/gen/iot/data
+github.com/yandex-cloud/go-sdk/gen/iot/devices
+github.com/yandex-cloud/go-sdk/gen/kms
+github.com/yandex-cloud/go-sdk/gen/kmsasymmetricencryptioncrypto
+github.com/yandex-cloud/go-sdk/gen/kmsasymmetricencryptionkey
+github.com/yandex-cloud/go-sdk/gen/kmsasymmetricsignaturecrypto
+github.com/yandex-cloud/go-sdk/gen/kmsasymmetricsignaturekey
+github.com/yandex-cloud/go-sdk/gen/kmscrypto
+github.com/yandex-cloud/go-sdk/gen/kubernetes
+github.com/yandex-cloud/go-sdk/gen/loadbalancer
+github.com/yandex-cloud/go-sdk/gen/loadtesting
+github.com/yandex-cloud/go-sdk/gen/loadtesting/agent-api
+github.com/yandex-cloud/go-sdk/gen/lockboxpayload
+github.com/yandex-cloud/go-sdk/gen/lockboxsecret
+github.com/yandex-cloud/go-sdk/gen/logging
+github.com/yandex-cloud/go-sdk/gen/logingestion
+github.com/yandex-cloud/go-sdk/gen/logreading
+github.com/yandex-cloud/go-sdk/gen/marketplace/licensemanager
+github.com/yandex-cloud/go-sdk/gen/marketplace/metering
+github.com/yandex-cloud/go-sdk/gen/mdb/clickhouse
+github.com/yandex-cloud/go-sdk/gen/mdb/elasticsearch
+github.com/yandex-cloud/go-sdk/gen/mdb/greenplum
+github.com/yandex-cloud/go-sdk/gen/mdb/kafka
+github.com/yandex-cloud/go-sdk/gen/mdb/mongodb
+github.com/yandex-cloud/go-sdk/gen/mdb/mysql
+github.com/yandex-cloud/go-sdk/gen/mdb/opensearch
+github.com/yandex-cloud/go-sdk/gen/mdb/postgresql
+github.com/yandex-cloud/go-sdk/gen/mdb/redis
+github.com/yandex-cloud/go-sdk/gen/mdb/sqlserver
+github.com/yandex-cloud/go-sdk/gen/mdbproxy
+github.com/yandex-cloud/go-sdk/gen/monitoring
+github.com/yandex-cloud/go-sdk/gen/operation
+github.com/yandex-cloud/go-sdk/gen/organizationmanager
+github.com/yandex-cloud/go-sdk/gen/organizationmanager/saml
+github.com/yandex-cloud/go-sdk/gen/resourcemanager
+github.com/yandex-cloud/go-sdk/gen/storage-api
+github.com/yandex-cloud/go-sdk/gen/triggers
+github.com/yandex-cloud/go-sdk/gen/vpc
+github.com/yandex-cloud/go-sdk/gen/ydb
+github.com/yandex-cloud/go-sdk/iamkey
+github.com/yandex-cloud/go-sdk/operation
+github.com/yandex-cloud/go-sdk/pkg/grpcclient
+github.com/yandex-cloud/go-sdk/pkg/sdkerrors
+github.com/yandex-cloud/go-sdk/pkg/singleflight
+# go.uber.org/mock v0.3.0
+## explicit; go 1.20
+# golang.org/x/net v0.19.0
+## explicit; go 1.18
+golang.org/x/net/context
+golang.org/x/net/html
+golang.org/x/net/html/atom
+golang.org/x/net/html/charset
+golang.org/x/net/http/httpguts
+golang.org/x/net/http2
+golang.org/x/net/http2/hpack
+golang.org/x/net/idna
+golang.org/x/net/internal/timeseries
+golang.org/x/net/trace
+# golang.org/x/sys v0.15.0
+## explicit; go 1.18
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+# golang.org/x/text v0.14.0
+## explicit; go 1.18
+golang.org/x/text/encoding
+golang.org/x/text/encoding/charmap
+golang.org/x/text/encoding/htmlindex
+golang.org/x/text/encoding/internal
+golang.org/x/text/encoding/internal/identifier
+golang.org/x/text/encoding/japanese
+golang.org/x/text/encoding/korean
+golang.org/x/text/encoding/simplifiedchinese
+golang.org/x/text/encoding/traditionalchinese
+golang.org/x/text/encoding/unicode
+golang.org/x/text/internal/language
+golang.org/x/text/internal/language/compact
+golang.org/x/text/internal/tag
+golang.org/x/text/internal/utf8internal
+golang.org/x/text/language
+golang.org/x/text/runes
+golang.org/x/text/secure/bidirule
+golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+# google.golang.org/genproto v0.0.0-20230822172742-b8732ec3820d
+## explicit; go 1.19
+google.golang.org/genproto/googleapis/type/dayofweek
+google.golang.org/genproto/googleapis/type/timeofday
+google.golang.org/genproto/internal
+# google.golang.org/genproto/googleapis/api v0.0.0-20230822172742-b8732ec3820d
+## explicit; go 1.19
+google.golang.org/genproto/googleapis/api
+google.golang.org/genproto/googleapis/api/annotations
+# google.golang.org/genproto/googleapis/rpc v0.0.0-20230822172742-b8732ec3820d
+## explicit; go 1.19
+google.golang.org/genproto/googleapis/rpc/code
+google.golang.org/genproto/googleapis/rpc/errdetails
+google.golang.org/genproto/googleapis/rpc/status
+# google.golang.org/grpc v1.59.0
+## explicit; go 1.19
+google.golang.org/grpc
+google.golang.org/grpc/attributes
+google.golang.org/grpc/backoff
+google.golang.org/grpc/balancer
+google.golang.org/grpc/balancer/base
+google.golang.org/grpc/balancer/grpclb/state
+google.golang.org/grpc/balancer/roundrobin
+google.golang.org/grpc/binarylog/grpc_binarylog_v1
+google.golang.org/grpc/channelz
+google.golang.org/grpc/codes
+google.golang.org/grpc/connectivity
+google.golang.org/grpc/credentials
+google.golang.org/grpc/credentials/insecure
+google.golang.org/grpc/encoding
+google.golang.org/grpc/encoding/proto
+google.golang.org/grpc/grpclog
+google.golang.org/grpc/internal
+google.golang.org/grpc/internal/backoff
+google.golang.org/grpc/internal/balancer/gracefulswitch
+google.golang.org/grpc/internal/balancerload
+google.golang.org/grpc/internal/binarylog
+google.golang.org/grpc/internal/buffer
+google.golang.org/grpc/internal/channelz
+google.golang.org/grpc/internal/credentials
+google.golang.org/grpc/internal/envconfig
+google.golang.org/grpc/internal/grpclog
+google.golang.org/grpc/internal/grpcrand
+google.golang.org/grpc/internal/grpcsync
+google.golang.org/grpc/internal/grpcutil
+google.golang.org/grpc/internal/idle
+google.golang.org/grpc/internal/metadata
+google.golang.org/grpc/internal/pretty
+google.golang.org/grpc/internal/resolver
+google.golang.org/grpc/internal/resolver/dns
+google.golang.org/grpc/internal/resolver/passthrough
+google.golang.org/grpc/internal/resolver/unix
+google.golang.org/grpc/internal/serviceconfig
+google.golang.org/grpc/internal/status
+google.golang.org/grpc/internal/syscall
+google.golang.org/grpc/internal/transport
+google.golang.org/grpc/internal/transport/networktype
+google.golang.org/grpc/keepalive
+google.golang.org/grpc/metadata
+google.golang.org/grpc/peer
+google.golang.org/grpc/resolver
+google.golang.org/grpc/serviceconfig
+google.golang.org/grpc/stats
+google.golang.org/grpc/status
+google.golang.org/grpc/tap
+# google.golang.org/protobuf v1.31.0
+## explicit; go 1.11
+google.golang.org/protobuf/encoding/protojson
+google.golang.org/protobuf/encoding/prototext
+google.golang.org/protobuf/encoding/protowire
+google.golang.org/protobuf/internal/descfmt
+google.golang.org/protobuf/internal/descopts
+google.golang.org/protobuf/internal/detrand
+google.golang.org/protobuf/internal/encoding/defval
+google.golang.org/protobuf/internal/encoding/json
+google.golang.org/protobuf/internal/encoding/messageset
+google.golang.org/protobuf/internal/encoding/tag
+google.golang.org/protobuf/internal/encoding/text
+google.golang.org/protobuf/internal/errors
+google.golang.org/protobuf/internal/filedesc
+google.golang.org/protobuf/internal/filetype
+google.golang.org/protobuf/internal/flags
+google.golang.org/protobuf/internal/genid
+google.golang.org/protobuf/internal/impl
+google.golang.org/protobuf/internal/order
+google.golang.org/protobuf/internal/pragma
+google.golang.org/protobuf/internal/set
+google.golang.org/protobuf/internal/strs
+google.golang.org/protobuf/internal/version
+google.golang.org/protobuf/proto
+google.golang.org/protobuf/reflect/protodesc
+google.golang.org/protobuf/reflect/protoreflect
+google.golang.org/protobuf/reflect/protoregistry
+google.golang.org/protobuf/runtime/protoiface
+google.golang.org/protobuf/runtime/protoimpl
+google.golang.org/protobuf/types/descriptorpb
+google.golang.org/protobuf/types/known/anypb
+google.golang.org/protobuf/types/known/durationpb
+google.golang.org/protobuf/types/known/emptypb
+google.golang.org/protobuf/types/known/fieldmaskpb
+google.golang.org/protobuf/types/known/structpb
+google.golang.org/protobuf/types/known/timestamppb
+google.golang.org/protobuf/types/known/wrapperspb
+# gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7
+## explicit
+gopkg.in/tomb.v1
+# gopkg.in/yaml.v2 v2.4.0
+## explicit; go 1.15
+gopkg.in/yaml.v2
+# gopkg.in/yaml.v3 v3.0.1
+## explicit
+gopkg.in/yaml.v3
+# k8s.io/apimachinery v0.28.4
+## explicit; go 1.20
+k8s.io/apimachinery/pkg/util/rand
+# k8s.io/klog v1.0.0
+## explicit; go 1.12
+k8s.io/klog
+# k8s.io/klog/v2 v2.100.1
+## explicit; go 1.13
+k8s.io/klog/v2
+k8s.io/klog/v2/internal/buffer
+k8s.io/klog/v2/internal/clock
+k8s.io/klog/v2/internal/dbg
+k8s.io/klog/v2/internal/serialize
+k8s.io/klog/v2/internal/severity
+# k8s.io/kubernetes v1.28.4
+## explicit; go 1.20
+k8s.io/kubernetes/pkg/volume/util/hostutil
+# k8s.io/mount-utils v0.28.4
+## explicit; go 1.20
+k8s.io/mount-utils
+# k8s.io/utils v0.0.0-20231127182322-b307cd553661
+## explicit; go 1.18
+k8s.io/utils/exec
+k8s.io/utils/io
+k8s.io/utils/keymutex
+k8s.io/utils/path
+# k8s.io/api => k8s.io/api v0.28.4
+# k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.28.4
+# k8s.io/apiserver => k8s.io/apiserver v0.28.4
+# k8s.io/cli-runtime => k8s.io/cli-runtime v0.28.4
+# k8s.io/client-go => k8s.io/client-go v0.28.4
+# k8s.io/cloud-provider => k8s.io/cloud-provider v0.28.4
+# k8s.io/cluster-bootstrap => k8s.io/cluster-bootstrap v0.28.4
+# k8s.io/code-generator => k8s.io/code-generator v0.28.4
+# k8s.io/component-base => k8s.io/component-base v0.28.4
+# k8s.io/component-helpers => k8s.io/component-helpers v0.28.4
+# k8s.io/controller-manager => k8s.io/controller-manager v0.28.4
+# k8s.io/cri-api => k8s.io/cri-api v0.28.4
+# k8s.io/csi-translation-lib => k8s.io/csi-translation-lib v0.28.4
+# k8s.io/dynamic-resource-allocation => k8s.io/dynamic-resource-allocation v0.28.4
+# k8s.io/endpointslice => k8s.io/endpointslice v0.28.4
+# k8s.io/kms => k8s.io/kms v0.28.4
+# k8s.io/kube-aggregator => k8s.io/kube-aggregator v0.28.4
+# k8s.io/kube-controller-manager => k8s.io/kube-controller-manager v0.28.4
+# k8s.io/kube-proxy => k8s.io/kube-proxy v0.28.4
+# k8s.io/kube-scheduler => k8s.io/kube-scheduler v0.28.4
+# k8s.io/kubectl => k8s.io/kubectl v0.28.4
+# k8s.io/kubelet => k8s.io/kubelet v0.28.4
+# k8s.io/legacy-cloud-providers => k8s.io/legacy-cloud-providers v0.28.4
+# k8s.io/metrics => k8s.io/metrics v0.28.4
+# k8s.io/pod-security-admission => k8s.io/pod-security-admission v0.28.4
+# k8s.io/sample-apiserver => k8s.io/sample-apiserver v0.28.4

@@ -1,0 +1,15 @@
+run:
+  timeout: 3m
+  tests: true
+
+
+linters-settings:
+  govet:
+    enable-all: true
+
+    disable:
+      - fieldalignment
+      - shadow
+
+  goimports:
+    local-prefixes: github.com/yandex-cloud/yc-csi-driver
