@@ -25,7 +25,7 @@ spec:
         - name: yc-csi-node
           securityContext:
             privileged: true
-          image: cr.yandex/crpepe7vk2hr2549ncud/yc-csi-node:2fc83cb
+          image: cr.yandex/crpsjg1coh47p81vh2lc/yc-csi-node:v1.0.0
           resources:
             requests:
               memory: 16Mi
