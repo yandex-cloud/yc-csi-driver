@@ -150,7 +150,7 @@ type EnsureObjectLabelsRequest struct {
 	Instance *Instance
 }
 
-//go:generate mockery -name=DiskAPI -outpkg=diskapimocks
+//go:generate mockery --name=DiskAPI --outpkg=diskapimocks --case=underscore
 type DiskAPI interface {
 	CreateDisk(context.Context, *CreateDiskRequest) (*Disk, error)
 	// Attach,Detach,Delete return success when operation has already been done earlier.
