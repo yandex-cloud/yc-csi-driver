@@ -1,0 +1,56 @@
+# Copyright 2024 YANDEX LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Run tests
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+
+      - name: Tidy
+        run: go mod tidy && git diff --exit-code
+
+      - name: Install dependencies
+        run: go install github.com/vektra/mockery/v2@v2.43.2
+
+      - name: Generate
+        run: go generate ./... && git diff --exit-code
+
+      - name: Build
+        run: go build -o=/dev/null ./cmd/...
+
+      - name: Lint
+        uses: golangci/golangci-lint-action@v5.0.0
+        with:
+          args: --timeout 3m
+
+      - name: Run tests
+        run: go test -race -shuffle=on -v ./...
