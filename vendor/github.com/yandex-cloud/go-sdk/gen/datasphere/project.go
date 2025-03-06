@@ -7,6 +7,7 @@ import (
 	"context"
 
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/emptypb"
 
 	"github.com/yandex-cloud/go-genproto/yandex/cloud/access"
 	datasphere "github.com/yandex-cloud/go-genproto/yandex/cloud/datasphere/v2"
@@ -19,6 +20,15 @@ import (
 // lazy GRPC connection initialization.
 type ProjectServiceClient struct {
 	getConn func(ctx context.Context) (*grpc.ClientConn, error)
+}
+
+// AddResource implements datasphere.ProjectServiceClient
+func (c *ProjectServiceClient) AddResource(ctx context.Context, in *datasphere.AddResourceToProjectRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewProjectServiceClient(conn).AddResource(ctx, in, opts...)
 }
 
 // Create implements datasphere.ProjectServiceClient
@@ -57,22 +67,22 @@ func (c *ProjectServiceClient) Get(ctx context.Context, in *datasphere.GetProjec
 	return datasphere.NewProjectServiceClient(conn).Get(ctx, in, opts...)
 }
 
-// GetCellOutputs implements datasphere.ProjectServiceClient
-func (c *ProjectServiceClient) GetCellOutputs(ctx context.Context, in *datasphere.CellOutputsRequest, opts ...grpc.CallOption) (*datasphere.CellOutputsResponse, error) {
+// GetRestrictions implements datasphere.ProjectServiceClient
+func (c *ProjectServiceClient) GetRestrictions(ctx context.Context, in *datasphere.GetProjectRestrictionsRequest, opts ...grpc.CallOption) (*datasphere.RestrictionsResponse, error) {
 	conn, err := c.getConn(ctx)
 	if err != nil {
 		return nil, err
 	}
-	return datasphere.NewProjectServiceClient(conn).GetCellOutputs(ctx, in, opts...)
+	return datasphere.NewProjectServiceClient(conn).GetRestrictions(ctx, in, opts...)
 }
 
-// GetStateVariables implements datasphere.ProjectServiceClient
-func (c *ProjectServiceClient) GetStateVariables(ctx context.Context, in *datasphere.GetStateVariablesRequest, opts ...grpc.CallOption) (*datasphere.GetStateVariablesResponse, error) {
+// GetRestrictionsMeta implements datasphere.ProjectServiceClient
+func (c *ProjectServiceClient) GetRestrictionsMeta(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*datasphere.GetRestrictionsMetaResponse, error) {
 	conn, err := c.getConn(ctx)
 	if err != nil {
 		return nil, err
 	}
-	return datasphere.NewProjectServiceClient(conn).GetStateVariables(ctx, in, opts...)
+	return datasphere.NewProjectServiceClient(conn).GetRestrictionsMeta(ctx, in, opts...)
 }
 
 // GetUnitBalance implements datasphere.ProjectServiceClient
@@ -325,6 +335,24 @@ func (c *ProjectServiceClient) Open(ctx context.Context, in *datasphere.OpenProj
 	return datasphere.NewProjectServiceClient(conn).Open(ctx, in, opts...)
 }
 
+// RemoveResource implements datasphere.ProjectServiceClient
+func (c *ProjectServiceClient) RemoveResource(ctx context.Context, in *datasphere.RemoveResourceFromProjectRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewProjectServiceClient(conn).RemoveResource(ctx, in, opts...)
+}
+
+// ResizeDisk implements datasphere.ProjectServiceClient
+func (c *ProjectServiceClient) ResizeDisk(ctx context.Context, in *datasphere.ResizeProjectDiskRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewProjectServiceClient(conn).ResizeDisk(ctx, in, opts...)
+}
+
 // SetAccessBindings implements datasphere.ProjectServiceClient
 func (c *ProjectServiceClient) SetAccessBindings(ctx context.Context, in *access.SetAccessBindingsRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
 	conn, err := c.getConn(ctx)
@@ -332,6 +360,15 @@ func (c *ProjectServiceClient) SetAccessBindings(ctx context.Context, in *access
 		return nil, err
 	}
 	return datasphere.NewProjectServiceClient(conn).SetAccessBindings(ctx, in, opts...)
+}
+
+// SetRestrictions implements datasphere.ProjectServiceClient
+func (c *ProjectServiceClient) SetRestrictions(ctx context.Context, in *datasphere.SetProjectRestrictionsRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewProjectServiceClient(conn).SetRestrictions(ctx, in, opts...)
 }
 
 // SetUnitBalance implements datasphere.ProjectServiceClient

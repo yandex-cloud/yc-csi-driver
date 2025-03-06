@@ -91,6 +91,10 @@ func (m *CreateClusterRequest) SetHostGroupIds(v []string) {
 	m.HostGroupIds = v
 }
 
+func (m *CreateClusterRequest) SetMaintenanceWindow(v *MaintenanceWindow) {
+	m.MaintenanceWindow = v
+}
+
 func (m *CreateClusterMetadata) SetClusterId(v string) {
 	m.ClusterId = v
 }
@@ -129,6 +133,10 @@ func (m *UpdateClusterRequest) SetSecurityGroupIds(v []string) {
 
 func (m *UpdateClusterRequest) SetDeletionProtection(v bool) {
 	m.DeletionProtection = v
+}
+
+func (m *UpdateClusterRequest) SetNetworkId(v string) {
+	m.NetworkId = v
 }
 
 func (m *UpdateClusterMetadata) SetClusterId(v string) {

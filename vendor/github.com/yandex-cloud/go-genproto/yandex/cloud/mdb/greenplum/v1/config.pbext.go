@@ -62,6 +62,34 @@ func (m *BackgroundActivitiesConfig) SetAnalyzeAndVacuum(v *AnalyzeAndVacuum) {
 	m.AnalyzeAndVacuum = v
 }
 
+func (m *BackgroundActivitiesConfig) SetQueryKillerScripts(v *QueryKillerScripts) {
+	m.QueryKillerScripts = v
+}
+
+func (m *QueryKiller) SetEnable(v *wrapperspb.BoolValue) {
+	m.Enable = v
+}
+
+func (m *QueryKiller) SetMaxAge(v *wrapperspb.Int64Value) {
+	m.MaxAge = v
+}
+
+func (m *QueryKiller) SetIgnoreUsers(v []string) {
+	m.IgnoreUsers = v
+}
+
+func (m *QueryKillerScripts) SetIdle(v *QueryKiller) {
+	m.Idle = v
+}
+
+func (m *QueryKillerScripts) SetIdleInTransaction(v *QueryKiller) {
+	m.IdleInTransaction = v
+}
+
+func (m *QueryKillerScripts) SetLongRunning(v *QueryKiller) {
+	m.LongRunning = v
+}
+
 func (m *MasterSubclusterConfig) SetResources(v *Resources) {
 	m.Resources = v
 }
@@ -108,6 +136,14 @@ func (m *GreenplumConfig6) SetLogStatement(v LogStatement) {
 
 func (m *GreenplumConfig6) SetGpAddColumnInheritsTableSetting(v *wrapperspb.BoolValue) {
 	m.GpAddColumnInheritsTableSetting = v
+}
+
+func (m *GreenplumConfig6) SetGpEnableGlobalDeadlockDetector(v *wrapperspb.BoolValue) {
+	m.GpEnableGlobalDeadlockDetector = v
+}
+
+func (m *GreenplumConfig6) SetGpGlobalDeadlockDetectorPeriod(v *wrapperspb.Int64Value) {
+	m.GpGlobalDeadlockDetectorPeriod = v
 }
 
 func (m *GreenplumConfig6_17) SetMaxConnections(v *wrapperspb.Int64Value) {

@@ -132,6 +132,14 @@ func (m *CreateInstanceRequest) SetMaintenanceGracePeriod(v *durationpb.Duration
 	m.MaintenanceGracePeriod = v
 }
 
+func (m *CreateInstanceRequest) SetSerialPortSettings(v *SerialPortSettings) {
+	m.SerialPortSettings = v
+}
+
+func (m *CreateInstanceRequest) SetReservedInstancePoolId(v string) {
+	m.ReservedInstancePoolId = v
+}
+
 func (m *CreateInstanceMetadata) SetInstanceId(v string) {
 	m.InstanceId = v
 }
@@ -194,6 +202,14 @@ func (m *UpdateInstanceRequest) SetMaintenancePolicy(v MaintenancePolicy) {
 
 func (m *UpdateInstanceRequest) SetMaintenanceGracePeriod(v *durationpb.Duration) {
 	m.MaintenanceGracePeriod = v
+}
+
+func (m *UpdateInstanceRequest) SetSerialPortSettings(v *SerialPortSettings) {
+	m.SerialPortSettings = v
+}
+
+func (m *UpdateInstanceRequest) SetReservedInstancePoolId(v string) {
+	m.ReservedInstancePoolId = v
 }
 
 func (m *UpdateInstanceMetadata) SetInstanceId(v string) {
@@ -352,6 +368,50 @@ func (m *DetachInstanceFilesystemMetadata) SetFilesystemId(v string) {
 	m.FilesystemId = v
 }
 
+func (m *AttachInstanceNetworkInterfaceRequest) SetInstanceId(v string) {
+	m.InstanceId = v
+}
+
+func (m *AttachInstanceNetworkInterfaceRequest) SetNetworkInterfaceIndex(v string) {
+	m.NetworkInterfaceIndex = v
+}
+
+func (m *AttachInstanceNetworkInterfaceRequest) SetSubnetId(v string) {
+	m.SubnetId = v
+}
+
+func (m *AttachInstanceNetworkInterfaceRequest) SetPrimaryV4AddressSpec(v *PrimaryAddressSpec) {
+	m.PrimaryV4AddressSpec = v
+}
+
+func (m *AttachInstanceNetworkInterfaceRequest) SetSecurityGroupIds(v []string) {
+	m.SecurityGroupIds = v
+}
+
+func (m *AttachInstanceNetworkInterfaceMetadata) SetInstanceId(v string) {
+	m.InstanceId = v
+}
+
+func (m *AttachInstanceNetworkInterfaceMetadata) SetNetworkInterfaceIndex(v string) {
+	m.NetworkInterfaceIndex = v
+}
+
+func (m *DetachInstanceNetworkInterfaceRequest) SetInstanceId(v string) {
+	m.InstanceId = v
+}
+
+func (m *DetachInstanceNetworkInterfaceRequest) SetNetworkInterfaceIndex(v string) {
+	m.NetworkInterfaceIndex = v
+}
+
+func (m *DetachInstanceNetworkInterfaceMetadata) SetInstanceId(v string) {
+	m.InstanceId = v
+}
+
+func (m *DetachInstanceNetworkInterfaceMetadata) SetNetworkInterfaceIndex(v string) {
+	m.NetworkInterfaceIndex = v
+}
+
 func (m *AddInstanceOneToOneNatRequest) SetInstanceId(v string) {
 	m.InstanceId = v
 }
@@ -422,6 +482,14 @@ func (m *UpdateInstanceNetworkInterfaceMetadata) SetInstanceId(v string) {
 
 func (m *UpdateInstanceNetworkInterfaceMetadata) SetNetworkInterfaceIndex(v string) {
 	m.NetworkInterfaceIndex = v
+}
+
+func (m *SimulateInstanceMaintenanceEventRequest) SetInstanceId(v string) {
+	m.InstanceId = v
+}
+
+func (m *SimulateInstanceMaintenanceEventMetadata) SetInstanceId(v string) {
+	m.InstanceId = v
 }
 
 func (m *ListInstanceOperationsRequest) SetInstanceId(v string) {
@@ -512,14 +580,6 @@ func (m *AttachedDiskSpec_DiskSpec) SetSize(v int64) {
 	m.Size = v
 }
 
-func (m *AttachedDiskSpec_DiskSpec) SetBlockSize(v int64) {
-	m.BlockSize = v
-}
-
-func (m *AttachedDiskSpec_DiskSpec) SetDiskPlacementPolicy(v *DiskPlacementPolicy) {
-	m.DiskPlacementPolicy = v
-}
-
 func (m *AttachedDiskSpec_DiskSpec) SetImageId(v string) {
 	m.Source = &AttachedDiskSpec_DiskSpec_ImageId{
 		ImageId: v,
@@ -530,6 +590,18 @@ func (m *AttachedDiskSpec_DiskSpec) SetSnapshotId(v string) {
 	m.Source = &AttachedDiskSpec_DiskSpec_SnapshotId{
 		SnapshotId: v,
 	}
+}
+
+func (m *AttachedDiskSpec_DiskSpec) SetDiskPlacementPolicy(v *DiskPlacementPolicy) {
+	m.DiskPlacementPolicy = v
+}
+
+func (m *AttachedDiskSpec_DiskSpec) SetBlockSize(v int64) {
+	m.BlockSize = v
+}
+
+func (m *AttachedDiskSpec_DiskSpec) SetKmsKeyId(v string) {
+	m.KmsKeyId = v
 }
 
 func (m *AttachedLocalDiskSpec) SetSize(v int64) {
@@ -562,6 +634,10 @@ func (m *NetworkInterfaceSpec) SetPrimaryV6AddressSpec(v *PrimaryAddressSpec) {
 
 func (m *NetworkInterfaceSpec) SetSecurityGroupIds(v []string) {
 	m.SecurityGroupIds = v
+}
+
+func (m *NetworkInterfaceSpec) SetIndex(v string) {
+	m.Index = v
 }
 
 func (m *PrimaryAddressSpec) SetAddress(v string) {

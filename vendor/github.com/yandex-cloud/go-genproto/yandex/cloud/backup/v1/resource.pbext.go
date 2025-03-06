@@ -54,6 +54,18 @@ func (m *Resource) SetIsActive(v bool) {
 	m.IsActive = v
 }
 
+func (m *Resource) SetInitStatus(v Resource_InitStatus) {
+	m.InitStatus = v
+}
+
+func (m *Resource) SetMetadata(v string) {
+	m.Metadata = v
+}
+
+func (m *Resource) SetType(v ResourceType) {
+	m.Type = v
+}
+
 func (m *Progress) SetCurrent(v int64) {
 	m.Current = v
 }
@@ -104,4 +116,12 @@ func (m *Task) SetCompletedAt(v *timestamppb.Timestamp) {
 
 func (m *Task) SetComputeInstanceId(v string) {
 	m.ComputeInstanceId = v
+}
+
+func (m *Task) SetResultCode(v Task_Code) {
+	m.ResultCode = v
+}
+
+func (m *Task) SetError(v string) {
+	m.Error = v
 }

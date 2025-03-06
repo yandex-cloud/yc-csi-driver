@@ -35,6 +35,8 @@ const (
 
 	DiskPlacementGroupIDKey        = "diskPlacementGroupId"
 	DiskPlacementGroupPartitionKey = "diskPlacementGroupPartition"
+
+	KMSKeyIDKey = "kmsKeyId"
 )
 
 var (

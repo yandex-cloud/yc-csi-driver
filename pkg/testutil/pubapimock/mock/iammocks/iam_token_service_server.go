@@ -140,6 +140,65 @@ func (_c *IamTokenServiceServer_CreateForServiceAccount_Call) RunAndReturn(run f
 	return _c
 }
 
+// Revoke provides a mock function with given fields: _a0, _a1
+func (_m *IamTokenServiceServer) Revoke(_a0 context.Context, _a1 *iam.RevokeIamTokenRequest) (*iam.RevokeIamTokenResponse, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Revoke")
+	}
+
+	var r0 *iam.RevokeIamTokenResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *iam.RevokeIamTokenRequest) (*iam.RevokeIamTokenResponse, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *iam.RevokeIamTokenRequest) *iam.RevokeIamTokenResponse); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*iam.RevokeIamTokenResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *iam.RevokeIamTokenRequest) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// IamTokenServiceServer_Revoke_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Revoke'
+type IamTokenServiceServer_Revoke_Call struct {
+	*mock.Call
+}
+
+// Revoke is a helper method to define mock.On call
+//   - _a0 context.Context
+//   - _a1 *iam.RevokeIamTokenRequest
+func (_e *IamTokenServiceServer_Expecter) Revoke(_a0 interface{}, _a1 interface{}) *IamTokenServiceServer_Revoke_Call {
+	return &IamTokenServiceServer_Revoke_Call{Call: _e.mock.On("Revoke", _a0, _a1)}
+}
+
+func (_c *IamTokenServiceServer_Revoke_Call) Run(run func(_a0 context.Context, _a1 *iam.RevokeIamTokenRequest)) *IamTokenServiceServer_Revoke_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*iam.RevokeIamTokenRequest))
+	})
+	return _c
+}
+
+func (_c *IamTokenServiceServer_Revoke_Call) Return(_a0 *iam.RevokeIamTokenResponse, _a1 error) *IamTokenServiceServer_Revoke_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *IamTokenServiceServer_Revoke_Call) RunAndReturn(run func(context.Context, *iam.RevokeIamTokenRequest) (*iam.RevokeIamTokenResponse, error)) *IamTokenServiceServer_Revoke_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // NewIamTokenServiceServer creates a new instance of IamTokenServiceServer. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
 // The first argument is typically a *testing.T value.
 func NewIamTokenServiceServer(t interface {

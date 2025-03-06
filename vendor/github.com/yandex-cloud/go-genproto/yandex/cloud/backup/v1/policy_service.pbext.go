@@ -94,6 +94,10 @@ func (m *ListApplicationsRequest) SetComputeInstanceId(v string) {
 	}
 }
 
+func (m *ListApplicationsRequest) SetShowProcessing(v bool) {
+	m.ShowProcessing = v
+}
+
 func (m *ListApplicationsResponse) SetApplications(v []*PolicyApplication) {
 	m.Applications = v
 }
@@ -112,6 +116,10 @@ func (m *ExecuteMetadata) SetPolicyId(v string) {
 
 func (m *ExecuteMetadata) SetComputeInstanceId(v string) {
 	m.ComputeInstanceId = v
+}
+
+func (m *ExecuteMetadata) SetProgressPercentage(v float64) {
+	m.ProgressPercentage = v
 }
 
 func (m *RevokeRequest) SetPolicyId(v string) {

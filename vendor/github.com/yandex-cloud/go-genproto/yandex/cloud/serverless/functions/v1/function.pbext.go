@@ -32,10 +32,6 @@ func (m *Function) SetLabels(v map[string]string) {
 	m.Labels = v
 }
 
-func (m *Function) SetLogGroupId(v string) {
-	m.LogGroupId = v
-}
-
 func (m *Function) SetHttpInvokeUrl(v string) {
 	m.HttpInvokeUrl = v
 }
@@ -92,10 +88,6 @@ func (m *Version) SetTags(v []string) {
 	m.Tags = v
 }
 
-func (m *Version) SetLogGroupId(v string) {
-	m.LogGroupId = v
-}
-
 func (m *Version) SetEnvironment(v map[string]string) {
 	m.Environment = v
 }
@@ -122,6 +114,22 @@ func (m *Version) SetStorageMounts(v []*StorageMount) {
 
 func (m *Version) SetAsyncInvocationConfig(v *AsyncInvocationConfig) {
 	m.AsyncInvocationConfig = v
+}
+
+func (m *Version) SetTmpfsSize(v int64) {
+	m.TmpfsSize = v
+}
+
+func (m *Version) SetConcurrency(v int64) {
+	m.Concurrency = v
+}
+
+func (m *Version) SetMounts(v []*Mount) {
+	m.Mounts = v
+}
+
+func (m *Version) SetMetadataOptions(v *MetadataOptions) {
+	m.MetadataOptions = v
 }
 
 func (m *Resources) SetMemory(v int64) {
@@ -242,6 +250,48 @@ func (m *StorageMount) SetReadOnly(v bool) {
 	m.ReadOnly = v
 }
 
+type Mount_Target = isMount_Target
+
+func (m *Mount) SetTarget(v Mount_Target) {
+	m.Target = v
+}
+
+func (m *Mount) SetName(v string) {
+	m.Name = v
+}
+
+func (m *Mount) SetMode(v Mount_Mode) {
+	m.Mode = v
+}
+
+func (m *Mount) SetObjectStorage(v *Mount_ObjectStorage) {
+	m.Target = &Mount_ObjectStorage_{
+		ObjectStorage: v,
+	}
+}
+
+func (m *Mount) SetEphemeralDiskSpec(v *Mount_DiskSpec) {
+	m.Target = &Mount_EphemeralDiskSpec{
+		EphemeralDiskSpec: v,
+	}
+}
+
+func (m *Mount_ObjectStorage) SetBucketId(v string) {
+	m.BucketId = v
+}
+
+func (m *Mount_ObjectStorage) SetPrefix(v string) {
+	m.Prefix = v
+}
+
+func (m *Mount_DiskSpec) SetSize(v int64) {
+	m.Size = v
+}
+
+func (m *Mount_DiskSpec) SetBlockSize(v int64) {
+	m.BlockSize = v
+}
+
 func (m *AsyncInvocationConfig) SetRetriesCount(v int64) {
 	m.RetriesCount = v
 }
@@ -282,4 +332,12 @@ func (m *YMQTarget) SetQueueArn(v string) {
 
 func (m *YMQTarget) SetServiceAccountId(v string) {
 	m.ServiceAccountId = v
+}
+
+func (m *MetadataOptions) SetGceHttpEndpoint(v MetadataOption) {
+	m.GceHttpEndpoint = v
+}
+
+func (m *MetadataOptions) SetAwsV1HttpEndpoint(v MetadataOption) {
+	m.AwsV1HttpEndpoint = v
 }

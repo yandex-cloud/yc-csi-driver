@@ -6,6 +6,10 @@ func (m *RegisterRequest) SetComputeInstanceId(v string) {
 	m.ComputeInstanceId = v
 }
 
+func (m *RegisterRequest) SetAgentVersion(v string) {
+	m.AgentVersion = v
+}
+
 func (m *RegisterResponse) SetAgentInstanceId(v string) {
 	m.AgentInstanceId = v
 }
@@ -24,6 +28,10 @@ func (m *ExternalAgentRegisterRequest) SetName(v string) {
 
 func (m *ExternalAgentRegisterRequest) SetAgentVersion(v string) {
 	m.AgentVersion = v
+}
+
+func (m *ExternalAgentRegisterRequest) SetLabels(v map[string]string) {
+	m.Labels = v
 }
 
 func (m *ExternalAgentRegisterMetadata) SetAgentInstanceId(v string) {

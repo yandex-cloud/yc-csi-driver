@@ -21,6 +21,7 @@ import (
 
 	"github.com/yandex-cloud/go-genproto/yandex/cloud/compute/v1"
 	ycsdk "github.com/yandex-cloud/go-sdk"
+
 	"github.com/yandex-cloud/yc-csi-driver/pkg/diskapi"
 
 	"golang.org/x/net/context"
@@ -83,6 +84,7 @@ func (d *publicDiskAPI) CreateDisk(ctx context.Context, req *diskapi.CreateDiskR
 				Labels:              labels,
 				Size:                req.Size,
 				DiskPlacementPolicy: convertDiskPlacementPolicyToComputeAPI(req.DiskPlacementPolicy),
+				KmsKeyId:            req.KMSKeyID,
 			},
 		),
 	)

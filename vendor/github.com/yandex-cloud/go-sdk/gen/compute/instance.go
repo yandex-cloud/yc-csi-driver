@@ -48,6 +48,15 @@ func (c *InstanceServiceClient) AttachFilesystem(ctx context.Context, in *comput
 	return compute.NewInstanceServiceClient(conn).AttachFilesystem(ctx, in, opts...)
 }
 
+// AttachNetworkInterface implements compute.InstanceServiceClient
+func (c *InstanceServiceClient) AttachNetworkInterface(ctx context.Context, in *compute.AttachInstanceNetworkInterfaceRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return compute.NewInstanceServiceClient(conn).AttachNetworkInterface(ctx, in, opts...)
+}
+
 // Create implements compute.InstanceServiceClient
 func (c *InstanceServiceClient) Create(ctx context.Context, in *compute.CreateInstanceRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
 	conn, err := c.getConn(ctx)
@@ -82,6 +91,15 @@ func (c *InstanceServiceClient) DetachFilesystem(ctx context.Context, in *comput
 		return nil, err
 	}
 	return compute.NewInstanceServiceClient(conn).DetachFilesystem(ctx, in, opts...)
+}
+
+// DetachNetworkInterface implements compute.InstanceServiceClient
+func (c *InstanceServiceClient) DetachNetworkInterface(ctx context.Context, in *compute.DetachInstanceNetworkInterfaceRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return compute.NewInstanceServiceClient(conn).DetachNetworkInterface(ctx, in, opts...)
 }
 
 // Get implements compute.InstanceServiceClient
@@ -493,6 +511,15 @@ func (c *InstanceServiceClient) SetAccessBindings(ctx context.Context, in *acces
 		return nil, err
 	}
 	return compute.NewInstanceServiceClient(conn).SetAccessBindings(ctx, in, opts...)
+}
+
+// SimulateMaintenanceEvent implements compute.InstanceServiceClient
+func (c *InstanceServiceClient) SimulateMaintenanceEvent(ctx context.Context, in *compute.SimulateInstanceMaintenanceEventRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return compute.NewInstanceServiceClient(conn).SimulateMaintenanceEvent(ctx, in, opts...)
 }
 
 // Start implements compute.InstanceServiceClient

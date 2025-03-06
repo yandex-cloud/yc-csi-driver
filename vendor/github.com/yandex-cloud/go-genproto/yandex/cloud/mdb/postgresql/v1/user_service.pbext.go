@@ -91,6 +91,14 @@ func (m *UpdateUserRequest) SetDeletionProtection(v *wrapperspb.BoolValue) {
 	m.DeletionProtection = v
 }
 
+func (m *UpdateUserRequest) SetUserPasswordEncryption(v UserPasswordEncryption) {
+	m.UserPasswordEncryption = v
+}
+
+func (m *UpdateUserRequest) SetGeneratePassword(v *wrapperspb.BoolValue) {
+	m.GeneratePassword = v
+}
+
 func (m *UpdateUserMetadata) SetClusterId(v string) {
 	m.ClusterId = v
 }

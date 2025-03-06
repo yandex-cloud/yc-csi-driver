@@ -263,6 +263,22 @@ func (m *CreateFunctionVersionRequest) SetAsyncInvocationConfig(v *AsyncInvocati
 	m.AsyncInvocationConfig = v
 }
 
+func (m *CreateFunctionVersionRequest) SetTmpfsSize(v int64) {
+	m.TmpfsSize = v
+}
+
+func (m *CreateFunctionVersionRequest) SetConcurrency(v int64) {
+	m.Concurrency = v
+}
+
+func (m *CreateFunctionVersionRequest) SetMounts(v []*Mount) {
+	m.Mounts = v
+}
+
+func (m *CreateFunctionVersionRequest) SetMetadataOptions(v *MetadataOptions) {
+	m.MetadataOptions = v
+}
+
 func (m *CreateFunctionVersionMetadata) SetFunctionVersionId(v string) {
 	m.FunctionVersionId = v
 }

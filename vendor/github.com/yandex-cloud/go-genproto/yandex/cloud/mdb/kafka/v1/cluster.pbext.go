@@ -127,6 +127,14 @@ func (m *ConfigSpec) SetRestApiConfig(v *ConfigSpec_RestAPIConfig) {
 	m.RestApiConfig = v
 }
 
+func (m *ConfigSpec) SetDiskSizeAutoscaling(v *DiskSizeAutoscaling) {
+	m.DiskSizeAutoscaling = v
+}
+
+func (m *ConfigSpec) SetKraft(v *ConfigSpec_KRaft) {
+	m.Kraft = v
+}
+
 type ConfigSpec_Kafka_KafkaConfig = isConfigSpec_Kafka_KafkaConfig
 
 func (m *ConfigSpec_Kafka) SetKafkaConfig(v ConfigSpec_Kafka_KafkaConfig) {
@@ -150,6 +158,10 @@ func (m *ConfigSpec_Kafka) SetKafkaConfig_3(v *KafkaConfig3) {
 }
 
 func (m *ConfigSpec_Zookeeper) SetResources(v *Resources) {
+	m.Resources = v
+}
+
+func (m *ConfigSpec_KRaft) SetResources(v *Resources) {
 	m.Resources = v
 }
 
@@ -363,4 +375,16 @@ func (m *Host) SetAssignPublicIp(v bool) {
 
 func (m *Access) SetDataTransfer(v bool) {
 	m.DataTransfer = v
+}
+
+func (m *DiskSizeAutoscaling) SetPlannedUsageThreshold(v int64) {
+	m.PlannedUsageThreshold = v
+}
+
+func (m *DiskSizeAutoscaling) SetEmergencyUsageThreshold(v int64) {
+	m.EmergencyUsageThreshold = v
+}
+
+func (m *DiskSizeAutoscaling) SetDiskSizeLimit(v int64) {
+	m.DiskSizeLimit = v
 }
