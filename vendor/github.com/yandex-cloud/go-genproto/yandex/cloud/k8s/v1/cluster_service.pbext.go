@@ -5,6 +5,7 @@ package k8s
 import (
 	operation "github.com/yandex-cloud/go-genproto/yandex/cloud/operation"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func (m *GetClusterRequest) SetClusterId(v string) {
@@ -129,6 +130,10 @@ func (m *MasterUpdateSpec) SetMasterLogging(v *MasterLogging) {
 
 func (m *MasterUpdateSpec) SetLocations(v []*LocationSpec) {
 	m.Locations = v
+}
+
+func (m *MasterUpdateSpec) SetExternalV6AddressSpec(v *ExternalAddressSpec) {
+	m.ExternalV6AddressSpec = v
 }
 
 func (m *UpdateClusterMetadata) SetClusterId(v string) {
@@ -383,4 +388,16 @@ func (m *LocationSpec) SetZoneId(v string) {
 
 func (m *LocationSpec) SetSubnetId(v string) {
 	m.SubnetId = v
+}
+
+func (m *RescheduleMaintenanceRequest) SetClusterId(v string) {
+	m.ClusterId = v
+}
+
+func (m *RescheduleMaintenanceRequest) SetDelayedUntil(v *timestamppb.Timestamp) {
+	m.DelayedUntil = v
+}
+
+func (m *RescheduleMaintenanceMetadata) SetClusterId(v string) {
+	m.ClusterId = v
 }

@@ -7,6 +7,7 @@ import (
 	"context"
 
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/emptypb"
 
 	"github.com/yandex-cloud/go-genproto/yandex/cloud/access"
 	datasphere "github.com/yandex-cloud/go-genproto/yandex/cloud/datasphere/v2"
@@ -19,6 +20,15 @@ import (
 // lazy GRPC connection initialization.
 type CommunityServiceClient struct {
 	getConn func(ctx context.Context) (*grpc.ClientConn, error)
+}
+
+// AddResource implements datasphere.CommunityServiceClient
+func (c *CommunityServiceClient) AddResource(ctx context.Context, in *datasphere.AddCommunityResourceRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewCommunityServiceClient(conn).AddResource(ctx, in, opts...)
 }
 
 // Create implements datasphere.CommunityServiceClient
@@ -46,6 +56,24 @@ func (c *CommunityServiceClient) Get(ctx context.Context, in *datasphere.GetComm
 		return nil, err
 	}
 	return datasphere.NewCommunityServiceClient(conn).Get(ctx, in, opts...)
+}
+
+// GetRestrictions implements datasphere.CommunityServiceClient
+func (c *CommunityServiceClient) GetRestrictions(ctx context.Context, in *datasphere.GetCommunityRestrictionsRequest, opts ...grpc.CallOption) (*datasphere.RestrictionsResponse, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewCommunityServiceClient(conn).GetRestrictions(ctx, in, opts...)
+}
+
+// GetRestrictionsMeta implements datasphere.CommunityServiceClient
+func (c *CommunityServiceClient) GetRestrictionsMeta(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*datasphere.GetRestrictionsMetaResponse, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewCommunityServiceClient(conn).GetRestrictionsMeta(ctx, in, opts...)
 }
 
 // List implements datasphere.CommunityServiceClient
@@ -280,6 +308,15 @@ func (it *CommunityAccessBindingsIterator) Error() error {
 	return it.err
 }
 
+// RemoveResource implements datasphere.CommunityServiceClient
+func (c *CommunityServiceClient) RemoveResource(ctx context.Context, in *datasphere.RemoveCommunityResourceRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewCommunityServiceClient(conn).RemoveResource(ctx, in, opts...)
+}
+
 // SetAccessBindings implements datasphere.CommunityServiceClient
 func (c *CommunityServiceClient) SetAccessBindings(ctx context.Context, in *access.SetAccessBindingsRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
 	conn, err := c.getConn(ctx)
@@ -287,6 +324,15 @@ func (c *CommunityServiceClient) SetAccessBindings(ctx context.Context, in *acce
 		return nil, err
 	}
 	return datasphere.NewCommunityServiceClient(conn).SetAccessBindings(ctx, in, opts...)
+}
+
+// SetRestrictions implements datasphere.CommunityServiceClient
+func (c *CommunityServiceClient) SetRestrictions(ctx context.Context, in *datasphere.SetCommunityRestrictionsRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return datasphere.NewCommunityServiceClient(conn).SetRestrictions(ctx, in, opts...)
 }
 
 // Update implements datasphere.CommunityServiceClient

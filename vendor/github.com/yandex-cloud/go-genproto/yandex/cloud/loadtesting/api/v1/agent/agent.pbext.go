@@ -37,3 +37,11 @@ func (m *Agent) SetCurrentJobId(v string) {
 func (m *Agent) SetAgentVersionId(v string) {
 	m.AgentVersionId = v
 }
+
+func (m *Agent) SetLabels(v map[string]string) {
+	m.Labels = v
+}
+
+func (m *Agent) SetLogSettings(v *LogSettings) {
+	m.LogSettings = v
+}

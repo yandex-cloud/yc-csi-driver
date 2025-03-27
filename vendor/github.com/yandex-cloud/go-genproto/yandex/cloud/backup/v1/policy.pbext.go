@@ -98,6 +98,10 @@ func (m *PolicySettings) SetQuiesceSnapshottingEnabled(v bool) {
 	m.QuiesceSnapshottingEnabled = v
 }
 
+func (m *PolicySettings) SetFileFilters(v *PolicySettings_FileFilters) {
+	m.FileFilters = v
+}
+
 func (m *PolicySettings_Interval) SetType(v PolicySettings_Interval_Type) {
 	m.Type = v
 }
@@ -150,8 +154,8 @@ func (m *PolicySettings_Retention) SetRules(v []*PolicySettings_Retention_Retent
 	m.Rules = v
 }
 
-func (m *PolicySettings_Retention) SetAfterBackup(v bool) {
-	m.AfterBackup = v
+func (m *PolicySettings_Retention) SetBeforeBackup(v bool) {
+	m.BeforeBackup = v
 }
 
 type PolicySettings_Retention_RetentionRule_Condition = isPolicySettings_Retention_RetentionRule_Condition
@@ -200,6 +204,10 @@ func (m *PolicySettings_Scheduling) SetWeeklyBackupDay(v PolicySettings_Day) {
 	m.WeeklyBackupDay = v
 }
 
+func (m *PolicySettings_Scheduling) SetTaskFailure(v *PolicySettings_RetriesConfiguration) {
+	m.TaskFailure = v
+}
+
 type PolicySettings_Scheduling_BackupSet_Setting = isPolicySettings_Scheduling_BackupSet_Setting
 
 func (m *PolicySettings_Scheduling_BackupSet) SetSetting(v PolicySettings_Scheduling_BackupSet_Setting) {
@@ -216,6 +224,10 @@ func (m *PolicySettings_Scheduling_BackupSet) SetSinceLastExecTime(v *PolicySett
 	m.Setting = &PolicySettings_Scheduling_BackupSet_SinceLastExecTime_{
 		SinceLastExecTime: v,
 	}
+}
+
+func (m *PolicySettings_Scheduling_BackupSet) SetType(v PolicySettings_Scheduling_BackupSet_Type) {
+	m.Type = v
 }
 
 func (m *PolicySettings_Scheduling_BackupSet_Time) SetWeekdays(v []PolicySettings_Day) {
@@ -258,6 +270,14 @@ func (m *PolicySettings_Scheduling_BackupSet_SinceLastExecTime) SetDelay(v *Poli
 	m.Delay = v
 }
 
+func (m *PolicySettings_FileFilters) SetExclusionMasks(v []string) {
+	m.ExclusionMasks = v
+}
+
+func (m *PolicySettings_FileFilters) SetInclusionMasks(v []string) {
+	m.InclusionMasks = v
+}
+
 func (m *PolicyApplication) SetPolicyId(v string) {
 	m.PolicyId = v
 }
@@ -276,4 +296,8 @@ func (m *PolicyApplication) SetStatus(v PolicyApplication_Status) {
 
 func (m *PolicyApplication) SetCreatedAt(v *timestamppb.Timestamp) {
 	m.CreatedAt = v
+}
+
+func (m *PolicyApplication) SetIsProcessing(v bool) {
+	m.IsProcessing = v
 }

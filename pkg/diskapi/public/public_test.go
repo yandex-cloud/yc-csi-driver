@@ -31,6 +31,7 @@ import (
 
 	"github.com/yandex-cloud/go-genproto/yandex/cloud/compute/v1"
 	ycsdk "github.com/yandex-cloud/go-sdk"
+
 	"github.com/yandex-cloud/yc-csi-driver/pkg/diskapi"
 	"github.com/yandex-cloud/yc-csi-driver/pkg/inflight"
 	"github.com/yandex-cloud/yc-csi-driver/pkg/services"
@@ -43,6 +44,7 @@ const (
 	diskName             = "NewVolume"
 	diskTypeID           = "mytype"
 	instanceID           = "NewInstance"
+	kmsKeyID             = "kms-key-id"
 	defaultDiskSizeBytes = 4 * 1024 * 1024 * 1024
 )
 
@@ -57,6 +59,7 @@ type testResources struct {
 	diskName             string
 	testData             *testData
 	defaultDiskSizeBytes int64
+	kmsKeyID             string
 }
 
 type controllerTest struct {
@@ -73,10 +76,11 @@ func TestCreateDisk(t *testing.T) {
 	disk, err := test.diskapi.CreateDisk(
 		context.Background(),
 		&diskapi.CreateDiskRequest{
-			Name:   test.cloudRes.diskName,
-			ZoneID: test.cloudRes.zoneID,
-			TypeID: test.cloudRes.diskTypeID,
-			Size:   test.cloudRes.defaultDiskSizeBytes,
+			Name:     test.cloudRes.diskName,
+			ZoneID:   test.cloudRes.zoneID,
+			TypeID:   test.cloudRes.diskTypeID,
+			Size:     test.cloudRes.defaultDiskSizeBytes,
+			KMSKeyID: test.cloudRes.kmsKeyID,
 		})
 	require.NoError(t, err)
 	assert.Equal(t, disk.Name, test.cloudRes.diskName)
@@ -337,6 +341,7 @@ func initializeTest(t *testing.T) *controllerTest {
 			diskTypeID:           diskTypeID,
 			diskName:             diskName,
 			defaultDiskSizeBytes: defaultDiskSizeBytes,
+			kmsKeyID:             kmsKeyID,
 			testData:             &testData{disk: []*compute.Disk{}, instance: []*compute.Instance{}},
 		},
 	}

@@ -72,6 +72,7 @@ type CreateDiskRequest struct {
 	Size                int64
 	SnapshotID          string
 	DiskPlacementPolicy *DiskPlacementPolicy
+	KMSKeyID            string
 }
 
 type DiskPlacementPolicy struct {

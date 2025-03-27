@@ -203,6 +203,65 @@ func (_c *InstanceServiceServer_AttachFilesystem_Call) RunAndReturn(run func(con
 	return _c
 }
 
+// AttachNetworkInterface provides a mock function with given fields: _a0, _a1
+func (_m *InstanceServiceServer) AttachNetworkInterface(_a0 context.Context, _a1 *compute.AttachInstanceNetworkInterfaceRequest) (*operation.Operation, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for AttachNetworkInterface")
+	}
+
+	var r0 *operation.Operation
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *compute.AttachInstanceNetworkInterfaceRequest) (*operation.Operation, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *compute.AttachInstanceNetworkInterfaceRequest) *operation.Operation); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operation.Operation)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *compute.AttachInstanceNetworkInterfaceRequest) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// InstanceServiceServer_AttachNetworkInterface_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'AttachNetworkInterface'
+type InstanceServiceServer_AttachNetworkInterface_Call struct {
+	*mock.Call
+}
+
+// AttachNetworkInterface is a helper method to define mock.On call
+//   - _a0 context.Context
+//   - _a1 *compute.AttachInstanceNetworkInterfaceRequest
+func (_e *InstanceServiceServer_Expecter) AttachNetworkInterface(_a0 interface{}, _a1 interface{}) *InstanceServiceServer_AttachNetworkInterface_Call {
+	return &InstanceServiceServer_AttachNetworkInterface_Call{Call: _e.mock.On("AttachNetworkInterface", _a0, _a1)}
+}
+
+func (_c *InstanceServiceServer_AttachNetworkInterface_Call) Run(run func(_a0 context.Context, _a1 *compute.AttachInstanceNetworkInterfaceRequest)) *InstanceServiceServer_AttachNetworkInterface_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*compute.AttachInstanceNetworkInterfaceRequest))
+	})
+	return _c
+}
+
+func (_c *InstanceServiceServer_AttachNetworkInterface_Call) Return(_a0 *operation.Operation, _a1 error) *InstanceServiceServer_AttachNetworkInterface_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *InstanceServiceServer_AttachNetworkInterface_Call) RunAndReturn(run func(context.Context, *compute.AttachInstanceNetworkInterfaceRequest) (*operation.Operation, error)) *InstanceServiceServer_AttachNetworkInterface_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Create provides a mock function with given fields: _a0, _a1
 func (_m *InstanceServiceServer) Create(_a0 context.Context, _a1 *compute.CreateInstanceRequest) (*operation.Operation, error) {
 	ret := _m.Called(_a0, _a1)
@@ -435,6 +494,65 @@ func (_c *InstanceServiceServer_DetachFilesystem_Call) Return(_a0 *operation.Ope
 }
 
 func (_c *InstanceServiceServer_DetachFilesystem_Call) RunAndReturn(run func(context.Context, *compute.DetachInstanceFilesystemRequest) (*operation.Operation, error)) *InstanceServiceServer_DetachFilesystem_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// DetachNetworkInterface provides a mock function with given fields: _a0, _a1
+func (_m *InstanceServiceServer) DetachNetworkInterface(_a0 context.Context, _a1 *compute.DetachInstanceNetworkInterfaceRequest) (*operation.Operation, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DetachNetworkInterface")
+	}
+
+	var r0 *operation.Operation
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *compute.DetachInstanceNetworkInterfaceRequest) (*operation.Operation, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *compute.DetachInstanceNetworkInterfaceRequest) *operation.Operation); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operation.Operation)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *compute.DetachInstanceNetworkInterfaceRequest) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// InstanceServiceServer_DetachNetworkInterface_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DetachNetworkInterface'
+type InstanceServiceServer_DetachNetworkInterface_Call struct {
+	*mock.Call
+}
+
+// DetachNetworkInterface is a helper method to define mock.On call
+//   - _a0 context.Context
+//   - _a1 *compute.DetachInstanceNetworkInterfaceRequest
+func (_e *InstanceServiceServer_Expecter) DetachNetworkInterface(_a0 interface{}, _a1 interface{}) *InstanceServiceServer_DetachNetworkInterface_Call {
+	return &InstanceServiceServer_DetachNetworkInterface_Call{Call: _e.mock.On("DetachNetworkInterface", _a0, _a1)}
+}
+
+func (_c *InstanceServiceServer_DetachNetworkInterface_Call) Run(run func(_a0 context.Context, _a1 *compute.DetachInstanceNetworkInterfaceRequest)) *InstanceServiceServer_DetachNetworkInterface_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*compute.DetachInstanceNetworkInterfaceRequest))
+	})
+	return _c
+}
+
+func (_c *InstanceServiceServer_DetachNetworkInterface_Call) Return(_a0 *operation.Operation, _a1 error) *InstanceServiceServer_DetachNetworkInterface_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *InstanceServiceServer_DetachNetworkInterface_Call) RunAndReturn(run func(context.Context, *compute.DetachInstanceNetworkInterfaceRequest) (*operation.Operation, error)) *InstanceServiceServer_DetachNetworkInterface_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -1025,6 +1143,65 @@ func (_c *InstanceServiceServer_SetAccessBindings_Call) Return(_a0 *operation.Op
 }
 
 func (_c *InstanceServiceServer_SetAccessBindings_Call) RunAndReturn(run func(context.Context, *access.SetAccessBindingsRequest) (*operation.Operation, error)) *InstanceServiceServer_SetAccessBindings_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SimulateMaintenanceEvent provides a mock function with given fields: _a0, _a1
+func (_m *InstanceServiceServer) SimulateMaintenanceEvent(_a0 context.Context, _a1 *compute.SimulateInstanceMaintenanceEventRequest) (*operation.Operation, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SimulateMaintenanceEvent")
+	}
+
+	var r0 *operation.Operation
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *compute.SimulateInstanceMaintenanceEventRequest) (*operation.Operation, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *compute.SimulateInstanceMaintenanceEventRequest) *operation.Operation); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operation.Operation)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *compute.SimulateInstanceMaintenanceEventRequest) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// InstanceServiceServer_SimulateMaintenanceEvent_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SimulateMaintenanceEvent'
+type InstanceServiceServer_SimulateMaintenanceEvent_Call struct {
+	*mock.Call
+}
+
+// SimulateMaintenanceEvent is a helper method to define mock.On call
+//   - _a0 context.Context
+//   - _a1 *compute.SimulateInstanceMaintenanceEventRequest
+func (_e *InstanceServiceServer_Expecter) SimulateMaintenanceEvent(_a0 interface{}, _a1 interface{}) *InstanceServiceServer_SimulateMaintenanceEvent_Call {
+	return &InstanceServiceServer_SimulateMaintenanceEvent_Call{Call: _e.mock.On("SimulateMaintenanceEvent", _a0, _a1)}
+}
+
+func (_c *InstanceServiceServer_SimulateMaintenanceEvent_Call) Run(run func(_a0 context.Context, _a1 *compute.SimulateInstanceMaintenanceEventRequest)) *InstanceServiceServer_SimulateMaintenanceEvent_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*compute.SimulateInstanceMaintenanceEventRequest))
+	})
+	return _c
+}
+
+func (_c *InstanceServiceServer_SimulateMaintenanceEvent_Call) Return(_a0 *operation.Operation, _a1 error) *InstanceServiceServer_SimulateMaintenanceEvent_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *InstanceServiceServer_SimulateMaintenanceEvent_Call) RunAndReturn(run func(context.Context, *compute.SimulateInstanceMaintenanceEventRequest) (*operation.Operation, error)) *InstanceServiceServer_SimulateMaintenanceEvent_Call {
 	_c.Call.Return(run)
 	return _c
 }

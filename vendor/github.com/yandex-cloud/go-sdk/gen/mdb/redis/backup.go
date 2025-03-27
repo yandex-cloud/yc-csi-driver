@@ -9,6 +9,7 @@ import (
 	"google.golang.org/grpc"
 
 	redis "github.com/yandex-cloud/go-genproto/yandex/cloud/mdb/redis/v1"
+	"github.com/yandex-cloud/go-genproto/yandex/cloud/operation"
 )
 
 //revive:disable
@@ -17,6 +18,15 @@ import (
 // lazy GRPC connection initialization.
 type BackupServiceClient struct {
 	getConn func(ctx context.Context) (*grpc.ClientConn, error)
+}
+
+// Delete implements redis.BackupServiceClient
+func (c *BackupServiceClient) Delete(ctx context.Context, in *redis.DeleteBackupRequest, opts ...grpc.CallOption) (*operation.Operation, error) {
+	conn, err := c.getConn(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return redis.NewBackupServiceClient(conn).Delete(ctx, in, opts...)
 }
 
 // Get implements redis.BackupServiceClient

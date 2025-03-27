@@ -84,10 +84,6 @@ func (m *DataTransformationOptions) SetCloudFunction(v string) {
 	m.CloudFunction = v
 }
 
-func (m *DataTransformationOptions) SetServiceAccountId(v string) {
-	m.ServiceAccountId = v
-}
-
 func (m *DataTransformationOptions) SetNumberOfRetries(v int64) {
 	m.NumberOfRetries = v
 }
@@ -104,6 +100,10 @@ func (m *DataTransformationOptions) SetInvocationTimeout(v string) {
 	m.InvocationTimeout = v
 }
 
+func (m *DataTransformationOptions) SetServiceAccountId(v string) {
+	m.ServiceAccountId = v
+}
+
 func (m *FieldList) SetFields(v []*ColSchema) {
 	m.Fields = v
 }
@@ -114,14 +114,22 @@ func (m *DataSchema) SetSchema(v DataSchema_Schema) {
 	m.Schema = v
 }
 
+func (m *DataSchema) SetJsonFields(v string) {
+	m.Schema = &DataSchema_JsonFields{
+		JsonFields: v,
+	}
+}
+
 func (m *DataSchema) SetFields(v *FieldList) {
 	m.Schema = &DataSchema_Fields{
 		Fields: v,
 	}
 }
 
-func (m *DataSchema) SetJsonFields(v string) {
-	m.Schema = &DataSchema_JsonFields{
-		JsonFields: v,
-	}
+func (m *ConnectionManagerConnection) SetConnectionId(v string) {
+	m.ConnectionId = v
+}
+
+func (m *ConnectionManagerConnection) SetSubnetId(v string) {
+	m.SubnetId = v
 }

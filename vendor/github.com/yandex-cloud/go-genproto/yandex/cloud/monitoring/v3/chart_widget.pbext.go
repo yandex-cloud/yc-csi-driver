@@ -42,6 +42,10 @@ func (m *ChartWidget) SetFreeze(v ChartWidget_FreezeDuration) {
 	m.Freeze = v
 }
 
+func (m *ChartWidget) SetRepeat(v *ChartWidget_RepeatSettings) {
+	m.Repeat = v
+}
+
 func (m *ChartWidget_Queries) SetTargets(v []*ChartWidget_Queries_Target) {
 	m.Targets = v
 }
@@ -123,6 +127,12 @@ func (m *ChartWidget_VisualizationSettings_ColorSchemeSettings) SetStandard(v *C
 func (m *ChartWidget_VisualizationSettings_ColorSchemeSettings) SetGradient(v *ChartWidget_VisualizationSettings_ColorSchemeSettings_GradientColorScheme) {
 	m.Scheme = &ChartWidget_VisualizationSettings_ColorSchemeSettings_Gradient{
 		Gradient: v,
+	}
+}
+
+func (m *ChartWidget_VisualizationSettings_ColorSchemeSettings) SetHash(v *ChartWidget_VisualizationSettings_ColorSchemeSettings_HashColorScheme) {
+	m.Scheme = &ChartWidget_VisualizationSettings_ColorSchemeSettings_Hash{
+		Hash: v,
 	}
 }
 
@@ -242,4 +252,12 @@ func (m *ChartWidget_NameHidingSettings) SetPositive(v bool) {
 
 func (m *ChartWidget_NameHidingSettings) SetNames(v []string) {
 	m.Names = v
+}
+
+func (m *ChartWidget_RepeatSettings) SetRepeatBy(v []string) {
+	m.RepeatBy = v
+}
+
+func (m *ChartWidget_RepeatSettings) SetMaxChartsInRow(v int64) {
+	m.MaxChartsInRow = v
 }

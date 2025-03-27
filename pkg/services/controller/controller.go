@@ -612,6 +612,8 @@ func (c *controller) createNewVolume(
 
 	diskAPIRequest.DiskPlacementPolicy = diskPlacementPolicy
 
+	diskAPIRequest.KMSKeyID = parameters[services.KMSKeyIDKey]
+
 	disk, err := c.diskAPI.CreateDisk(
 		ctx,
 		diskAPIRequest,

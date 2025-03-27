@@ -58,6 +58,14 @@ func (m *Image) SetPooled(v bool) {
 	m.Pooled = v
 }
 
+func (m *Image) SetHardwareGeneration(v *HardwareGeneration) {
+	m.HardwareGeneration = v
+}
+
+func (m *Image) SetKmsKey(v *KMSKey) {
+	m.KmsKey = v
+}
+
 func (m *Os) SetType(v Os_Type) {
 	m.Type = v
 }

@@ -52,3 +52,13 @@ func (i *IAM) Key() *KeyServiceClient {
 func (i *IAM) ApiKey() *ApiKeyServiceClient {
 	return &ApiKeyServiceClient{getConn: i.getConn}
 }
+
+// ServiceControl gets ServiceControlService client
+func (i *IAM) ServiceControl() *ServiceControlServiceClient {
+	return &ServiceControlServiceClient{getConn: i.getConn}
+}
+
+// RefreshToken gets RefreshTokenService client
+func (i *IAM) RefreshToken() *RefreshTokenServiceClient {
+	return &RefreshTokenServiceClient{getConn: i.getConn}
+}

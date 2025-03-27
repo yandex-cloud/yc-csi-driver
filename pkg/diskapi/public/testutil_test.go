@@ -29,6 +29,7 @@ import (
 
 	"github.com/yandex-cloud/go-genproto/yandex/cloud/compute/v1"
 	pubOperation "github.com/yandex-cloud/go-genproto/yandex/cloud/operation"
+
 	"github.com/yandex-cloud/yc-csi-driver/pkg/testutil/pubapimock"
 )
 
@@ -48,6 +49,9 @@ func diskCreateMock(api *pubapimock.API, folderID string, testData *testData) {
 				TypeId:      req.GetTypeId(),
 				ZoneId:      req.GetZoneId(),
 				Size:        req.GetSize(),
+				KmsKey: &compute.KMSKey{
+					KeyId: req.GetKmsKeyId(),
+				},
 			}
 			testData.disk = append(testData.disk, disk)
 			return successOperation(disk)

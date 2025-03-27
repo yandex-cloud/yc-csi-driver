@@ -38,8 +38,20 @@ func (m *User) SetDeletionProtection(v *wrapperspb.BoolValue) {
 	m.DeletionProtection = v
 }
 
+func (m *User) SetUserPasswordEncryption(v UserPasswordEncryption) {
+	m.UserPasswordEncryption = v
+}
+
+func (m *User) SetConnectionManager(v *ConnectionManager) {
+	m.ConnectionManager = v
+}
+
 func (m *Permission) SetDatabaseName(v string) {
 	m.DatabaseName = v
+}
+
+func (m *ConnectionManager) SetConnectionId(v string) {
+	m.ConnectionId = v
 }
 
 func (m *UserSpec) SetName(v string) {
@@ -72,6 +84,18 @@ func (m *UserSpec) SetGrants(v []string) {
 
 func (m *UserSpec) SetDeletionProtection(v *wrapperspb.BoolValue) {
 	m.DeletionProtection = v
+}
+
+func (m *UserSpec) SetUserPasswordEncryption(v UserPasswordEncryption) {
+	m.UserPasswordEncryption = v
+}
+
+func (m *UserSpec) SetGeneratePassword(v *wrapperspb.BoolValue) {
+	m.GeneratePassword = v
+}
+
+func (m *PGAuditSettings) SetLog(v []PGAuditSettings_PGAuditSettingsLog) {
+	m.Log = v
 }
 
 func (m *UserSettings) SetDefaultTransactionIsolation(v UserSettings_TransactionIsolation) {
@@ -120,4 +144,8 @@ func (m *UserSettings) SetIdleInTransactionSessionTimeout(v *wrapperspb.Int64Val
 
 func (m *UserSettings) SetStatementTimeout(v *wrapperspb.Int64Value) {
 	m.StatementTimeout = v
+}
+
+func (m *UserSettings) SetPgaudit(v *PGAuditSettings) {
+	m.Pgaudit = v
 }

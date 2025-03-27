@@ -75,6 +75,10 @@ func (m *Instance) SetNetworkInterfaces(v []*NetworkInterface) {
 	m.NetworkInterfaces = v
 }
 
+func (m *Instance) SetSerialPortSettings(v *SerialPortSettings) {
+	m.SerialPortSettings = v
+}
+
 func (m *Instance) SetGpuSettings(v *GpuSettings) {
 	m.GpuSettings = v
 }
@@ -113,6 +117,14 @@ func (m *Instance) SetMaintenancePolicy(v MaintenancePolicy) {
 
 func (m *Instance) SetMaintenanceGracePeriod(v *durationpb.Duration) {
 	m.MaintenanceGracePeriod = v
+}
+
+func (m *Instance) SetHardwareGeneration(v *HardwareGeneration) {
+	m.HardwareGeneration = v
+}
+
+func (m *Instance) SetReservedInstancePoolId(v string) {
+	m.ReservedInstancePoolId = v
 }
 
 func (m *Resources) SetMemory(v int64) {
@@ -281,4 +293,8 @@ func (m *MetadataOptions) SetGceHttpToken(v MetadataOption) {
 
 func (m *MetadataOptions) SetAwsV1HttpToken(v MetadataOption) {
 	m.AwsV1HttpToken = v
+}
+
+func (m *SerialPortSettings) SetSshAuthorization(v SerialPortSettings_SSHAuthorization) {
+	m.SshAuthorization = v
 }

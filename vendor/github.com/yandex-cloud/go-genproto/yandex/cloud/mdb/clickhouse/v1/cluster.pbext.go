@@ -125,6 +125,10 @@ func (m *ClusterConfig) SetEmbeddedKeeper(v *wrapperspb.BoolValue) {
 	m.EmbeddedKeeper = v
 }
 
+func (m *ClusterConfig) SetBackupRetainPeriodDays(v *wrapperspb.Int64Value) {
+	m.BackupRetainPeriodDays = v
+}
+
 func (m *ClusterConfig_Clickhouse) SetConfig(v *config.ClickhouseConfigSet) {
 	m.Config = v
 }
@@ -147,6 +151,10 @@ func (m *Shard) SetClusterId(v string) {
 
 func (m *Shard) SetConfig(v *ShardConfig) {
 	m.Config = v
+}
+
+func (m *Shards) SetShards(v []*Shard) {
+	m.Shards = v
 }
 
 func (m *ShardGroup) SetName(v string) {

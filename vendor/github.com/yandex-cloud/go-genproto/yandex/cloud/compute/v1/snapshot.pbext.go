@@ -49,3 +49,11 @@ func (m *Snapshot) SetStatus(v Snapshot_Status) {
 func (m *Snapshot) SetSourceDiskId(v string) {
 	m.SourceDiskId = v
 }
+
+func (m *Snapshot) SetHardwareGeneration(v *HardwareGeneration) {
+	m.HardwareGeneration = v
+}
+
+func (m *Snapshot) SetKmsKey(v *KMSKey) {
+	m.KmsKey = v
+}

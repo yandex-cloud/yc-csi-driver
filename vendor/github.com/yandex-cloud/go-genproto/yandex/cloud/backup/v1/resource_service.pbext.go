@@ -2,6 +2,10 @@
 
 package backup
 
+import (
+	operation "github.com/yandex-cloud/go-genproto/yandex/cloud/operation"
+)
+
 func (m *ListResourcesRequest) SetFolderId(v string) {
 	m.FolderId = v
 }
@@ -12,6 +16,10 @@ func (m *ListResourcesRequest) SetPageSize(v int64) {
 
 func (m *ListResourcesRequest) SetPageToken(v string) {
 	m.PageToken = v
+}
+
+func (m *ListResourcesRequest) SetType(v ResourceType) {
+	m.Type = v
 }
 
 func (m *ListResourcesResponse) SetResources(v []*Resource) {
@@ -112,4 +120,24 @@ func (m *CreateDirectoryMetadata) SetComputeInstanceId(v string) {
 
 func (m *CreateDirectoryMetadata) SetPath(v string) {
 	m.Path = v
+}
+
+func (m *ListResourceOperationsRequest) SetComputeInstanceId(v string) {
+	m.ComputeInstanceId = v
+}
+
+func (m *ListResourceOperationsRequest) SetPageSize(v int64) {
+	m.PageSize = v
+}
+
+func (m *ListResourceOperationsRequest) SetPageToken(v string) {
+	m.PageToken = v
+}
+
+func (m *ListResourceOperationsResponse) SetOperations(v []*operation.Operation) {
+	m.Operations = v
+}
+
+func (m *ListResourceOperationsResponse) SetNextPageToken(v string) {
+	m.NextPageToken = v
 }

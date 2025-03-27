@@ -104,6 +104,18 @@ func (m *Revision) SetStorageMounts(v []*StorageMount) {
 	m.StorageMounts = v
 }
 
+func (m *Revision) SetMounts(v []*Mount) {
+	m.Mounts = v
+}
+
+func (m *Revision) SetRuntime(v *Runtime) {
+	m.Runtime = v
+}
+
+func (m *Revision) SetMetadataOptions(v *MetadataOptions) {
+	m.MetadataOptions = v
+}
+
 func (m *Image) SetImageUrl(v string) {
 	m.ImageUrl = v
 }
@@ -232,4 +244,72 @@ func (m *StorageMount) SetReadOnly(v bool) {
 
 func (m *StorageMount) SetMountPointPath(v string) {
 	m.MountPointPath = v
+}
+
+type Mount_Target = isMount_Target
+
+func (m *Mount) SetTarget(v Mount_Target) {
+	m.Target = v
+}
+
+func (m *Mount) SetMountPointPath(v string) {
+	m.MountPointPath = v
+}
+
+func (m *Mount) SetMode(v Mount_Mode) {
+	m.Mode = v
+}
+
+func (m *Mount) SetObjectStorage(v *Mount_ObjectStorage) {
+	m.Target = &Mount_ObjectStorage_{
+		ObjectStorage: v,
+	}
+}
+
+func (m *Mount) SetEphemeralDiskSpec(v *Mount_DiskSpec) {
+	m.Target = &Mount_EphemeralDiskSpec{
+		EphemeralDiskSpec: v,
+	}
+}
+
+func (m *Mount_ObjectStorage) SetBucketId(v string) {
+	m.BucketId = v
+}
+
+func (m *Mount_ObjectStorage) SetPrefix(v string) {
+	m.Prefix = v
+}
+
+func (m *Mount_DiskSpec) SetSize(v int64) {
+	m.Size = v
+}
+
+func (m *Mount_DiskSpec) SetBlockSize(v int64) {
+	m.BlockSize = v
+}
+
+type Runtime_Type = isRuntime_Type
+
+func (m *Runtime) SetType(v Runtime_Type) {
+	m.Type = v
+}
+
+func (m *Runtime) SetHttp(v *Runtime_Http) {
+	m.Type = &Runtime_Http_{
+		Http: v,
+	}
+}
+
+func (m *Runtime) SetTask(v *Runtime_Task) {
+	m.Type = &Runtime_Task_{
+		Task: v,
+	}
+}
+
+func (m *MetadataOptions) SetGceHttpEndpoint(v MetadataOption) {
+	m.GceHttpEndpoint = v
+}
+
+func (m *MetadataOptions) SetAwsV1HttpEndpoint(v MetadataOption) {
+	m.AwsV1HttpEndpoint = v
 }

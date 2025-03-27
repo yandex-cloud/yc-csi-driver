@@ -108,6 +108,22 @@ func (m *Cluster) SetCloudStorage(v *CloudStorage) {
 	m.CloudStorage = v
 }
 
+func (m *Cluster) SetMasterHostGroupIds(v []string) {
+	m.MasterHostGroupIds = v
+}
+
+func (m *Cluster) SetSegmentHostGroupIds(v []string) {
+	m.SegmentHostGroupIds = v
+}
+
+func (m *Cluster) SetServiceAccountId(v string) {
+	m.ServiceAccountId = v
+}
+
+func (m *Cluster) SetLogging(v *LoggingConfig) {
+	m.Logging = v
+}
+
 type ClusterConfigSet_GreenplumConfig = isClusterConfigSet_GreenplumConfig
 
 func (m *ClusterConfigSet) SetGreenplumConfig(v ClusterConfigSet_GreenplumConfig) {
@@ -208,6 +224,10 @@ func (m *Access) SetDataTransfer(v bool) {
 	m.DataTransfer = v
 }
 
+func (m *Access) SetYandexQuery(v bool) {
+	m.YandexQuery = v
+}
+
 func (m *GreenplumRestoreConfig) SetBackupWindowStart(v *timeofday.TimeOfDay) {
 	m.BackupWindowStart = v
 }
@@ -238,4 +258,38 @@ func (m *RestoreResources) SetDiskSize(v int64) {
 
 func (m *CloudStorage) SetEnable(v bool) {
 	m.Enable = v
+}
+
+type LoggingConfig_Destination = isLoggingConfig_Destination
+
+func (m *LoggingConfig) SetDestination(v LoggingConfig_Destination) {
+	m.Destination = v
+}
+
+func (m *LoggingConfig) SetEnabled(v bool) {
+	m.Enabled = v
+}
+
+func (m *LoggingConfig) SetFolderId(v string) {
+	m.Destination = &LoggingConfig_FolderId{
+		FolderId: v,
+	}
+}
+
+func (m *LoggingConfig) SetLogGroupId(v string) {
+	m.Destination = &LoggingConfig_LogGroupId{
+		LogGroupId: v,
+	}
+}
+
+func (m *LoggingConfig) SetCommandCenterEnabled(v bool) {
+	m.CommandCenterEnabled = v
+}
+
+func (m *LoggingConfig) SetGreenplumEnabled(v bool) {
+	m.GreenplumEnabled = v
+}
+
+func (m *LoggingConfig) SetPoolerEnabled(v bool) {
+	m.PoolerEnabled = v
 }

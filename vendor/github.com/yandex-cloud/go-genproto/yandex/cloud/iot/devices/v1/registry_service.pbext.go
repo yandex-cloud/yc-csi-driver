@@ -63,6 +63,10 @@ func (m *CreateRegistryRequest) SetPassword(v string) {
 	m.Password = v
 }
 
+func (m *CreateRegistryRequest) SetLogOptions(v *LogOptions) {
+	m.LogOptions = v
+}
+
 func (m *CreateRegistryRequest_Certificate) SetCertificateData(v string) {
 	m.CertificateData = v
 }
@@ -89,6 +93,10 @@ func (m *UpdateRegistryRequest) SetDescription(v string) {
 
 func (m *UpdateRegistryRequest) SetLabels(v map[string]string) {
 	m.Labels = v
+}
+
+func (m *UpdateRegistryRequest) SetLogOptions(v *LogOptions) {
+	m.LogOptions = v
 }
 
 func (m *UpdateRegistryMetadata) SetRegistryId(v string) {
@@ -281,4 +289,20 @@ func (m *ListDataStreamExportsRequest) SetRegistryId(v string) {
 
 func (m *ListDataStreamExportsResponse) SetDataStreamExports(v []*DataStreamExport) {
 	m.DataStreamExports = v
+}
+
+func (m *DisableRegistryRequest) SetRegistryId(v string) {
+	m.RegistryId = v
+}
+
+func (m *DisableRegistryMetadata) SetRegistryId(v string) {
+	m.RegistryId = v
+}
+
+func (m *EnableRegistryRequest) SetRegistryId(v string) {
+	m.RegistryId = v
+}
+
+func (m *EnableRegistryMetadata) SetRegistryId(v string) {
+	m.RegistryId = v
 }

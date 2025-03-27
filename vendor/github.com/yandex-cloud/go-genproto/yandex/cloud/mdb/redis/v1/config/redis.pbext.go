@@ -46,6 +46,54 @@ func (m *RedisConfig) SetMaxmemoryPercent(v *wrapperspb.Int64Value) {
 	m.MaxmemoryPercent = v
 }
 
+func (m *RedisConfig) SetLuaTimeLimit(v *wrapperspb.Int64Value) {
+	m.LuaTimeLimit = v
+}
+
+func (m *RedisConfig) SetReplBacklogSizePercent(v *wrapperspb.Int64Value) {
+	m.ReplBacklogSizePercent = v
+}
+
+func (m *RedisConfig) SetClusterRequireFullCoverage(v *wrapperspb.BoolValue) {
+	m.ClusterRequireFullCoverage = v
+}
+
+func (m *RedisConfig) SetClusterAllowReadsWhenDown(v *wrapperspb.BoolValue) {
+	m.ClusterAllowReadsWhenDown = v
+}
+
+func (m *RedisConfig) SetClusterAllowPubsubshardWhenDown(v *wrapperspb.BoolValue) {
+	m.ClusterAllowPubsubshardWhenDown = v
+}
+
+func (m *RedisConfig) SetLfuDecayTime(v *wrapperspb.Int64Value) {
+	m.LfuDecayTime = v
+}
+
+func (m *RedisConfig) SetLfuLogFactor(v *wrapperspb.Int64Value) {
+	m.LfuLogFactor = v
+}
+
+func (m *RedisConfig) SetTurnBeforeSwitchover(v *wrapperspb.BoolValue) {
+	m.TurnBeforeSwitchover = v
+}
+
+func (m *RedisConfig) SetAllowDataLoss(v *wrapperspb.BoolValue) {
+	m.AllowDataLoss = v
+}
+
+func (m *RedisConfig) SetUseLuajit(v *wrapperspb.BoolValue) {
+	m.UseLuajit = v
+}
+
+func (m *RedisConfig) SetIoThreadsAllowed(v *wrapperspb.BoolValue) {
+	m.IoThreadsAllowed = v
+}
+
+func (m *RedisConfig) SetZsetMaxListpackEntries(v *wrapperspb.Int64Value) {
+	m.ZsetMaxListpackEntries = v
+}
+
 func (m *RedisConfig_ClientOutputBufferLimit) SetHardLimit(v *wrapperspb.Int64Value) {
 	m.HardLimit = v
 }

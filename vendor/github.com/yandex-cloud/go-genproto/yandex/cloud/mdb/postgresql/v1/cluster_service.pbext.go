@@ -39,6 +39,22 @@ func (m *ListClustersResponse) SetNextPageToken(v string) {
 	m.NextPageToken = v
 }
 
+func (m *BackupRetentionPolicySpec) SetPolicyName(v string) {
+	m.PolicyName = v
+}
+
+func (m *BackupRetentionPolicySpec) SetCron(v *CronTab) {
+	m.Cron = v
+}
+
+func (m *BackupRetentionPolicySpec) SetRetainForDays(v int64) {
+	m.RetainForDays = v
+}
+
+func (m *BackupRetentionPolicySpec) SetDescription(v string) {
+	m.Description = v
+}
+
 func (m *CreateClusterRequest) SetFolderId(v string) {
 	m.FolderId = v
 }
@@ -91,6 +107,14 @@ func (m *CreateClusterRequest) SetHostGroupIds(v []string) {
 	m.HostGroupIds = v
 }
 
+func (m *CreateClusterRequest) SetMaintenanceWindow(v *MaintenanceWindow) {
+	m.MaintenanceWindow = v
+}
+
+func (m *CreateClusterRequest) SetRetentionPolicies(v []*BackupRetentionPolicySpec) {
+	m.RetentionPolicies = v
+}
+
 func (m *CreateClusterMetadata) SetClusterId(v string) {
 	m.ClusterId = v
 }
@@ -129,6 +153,10 @@ func (m *UpdateClusterRequest) SetSecurityGroupIds(v []string) {
 
 func (m *UpdateClusterRequest) SetDeletionProtection(v bool) {
 	m.DeletionProtection = v
+}
+
+func (m *UpdateClusterRequest) SetNetworkId(v string) {
+	m.NetworkId = v
 }
 
 func (m *UpdateClusterMetadata) SetClusterId(v string) {
@@ -627,6 +655,18 @@ func (m *ConfigSpec) SetPostgresqlConfig_16_1C(v *config.PostgresqlConfig16_1C) 
 	}
 }
 
+func (m *ConfigSpec) SetPostgresqlConfig_17(v *config.PostgresqlConfig17) {
+	m.PostgresqlConfig = &ConfigSpec_PostgresqlConfig_17{
+		PostgresqlConfig_17: v,
+	}
+}
+
+func (m *ConfigSpec) SetPostgresqlConfig_17_1C(v *config.PostgresqlConfig17_1C) {
+	m.PostgresqlConfig = &ConfigSpec_PostgresqlConfig_17_1C{
+		PostgresqlConfig_17_1C: v,
+	}
+}
+
 func (m *ConfigSpec) SetPoolerConfig(v *ConnectionPoolerConfig) {
 	m.PoolerConfig = v
 }
@@ -752,5 +792,17 @@ func (m *ConfigHostSpec) SetPostgresqlConfig_16(v *config.PostgresqlHostConfig16
 func (m *ConfigHostSpec) SetPostgresqlConfig_16_1C(v *config.PostgresqlHostConfig16_1C) {
 	m.PostgresqlConfig = &ConfigHostSpec_PostgresqlConfig_16_1C{
 		PostgresqlConfig_16_1C: v,
+	}
+}
+
+func (m *ConfigHostSpec) SetPostgresqlConfig_17(v *config.PostgresqlHostConfig17) {
+	m.PostgresqlConfig = &ConfigHostSpec_PostgresqlConfig_17{
+		PostgresqlConfig_17: v,
+	}
+}
+
+func (m *ConfigHostSpec) SetPostgresqlConfig_17_1C(v *config.PostgresqlHostConfig17_1C) {
+	m.PostgresqlConfig = &ConfigHostSpec_PostgresqlConfig_17_1C{
+		PostgresqlConfig_17_1C: v,
 	}
 }

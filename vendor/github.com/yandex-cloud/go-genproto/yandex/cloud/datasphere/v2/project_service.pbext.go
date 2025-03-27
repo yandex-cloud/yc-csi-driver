@@ -5,7 +5,6 @@ package datasphere
 import (
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	structpb "google.golang.org/protobuf/types/known/structpb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -179,6 +178,14 @@ func (m *ProjectExecutionRequest) SetOutputVariableNames(v []string) {
 	m.OutputVariableNames = v
 }
 
+func (m *ProjectExecutionRequest) SetSpec(v string) {
+	m.Spec = v
+}
+
+func (m *ProjectExecutionRequest) SetSparkConnectorId(v string) {
+	m.SparkConnectorId = v
+}
+
 type ProjectExecutionMetadata_Target = isProjectExecutionMetadata_Target
 
 func (m *ProjectExecutionMetadata) SetTarget(v ProjectExecutionMetadata_Target) {
@@ -201,56 +208,8 @@ func (m *ProjectExecutionMetadata) SetCellId(v string) {
 	}
 }
 
-func (m *ProjectExecutionResponse) SetCheckpointId(v string) {
-	m.CheckpointId = v
-}
-
-func (m *ProjectExecutionResponse) SetOutputVariables(v *structpb.Struct) {
-	m.OutputVariables = v
-}
-
 func (m *ProjectExecutionResponse) SetExecutionStatus(v ExecutionStatus) {
 	m.ExecutionStatus = v
-}
-
-func (m *CellOutputsRequest) SetProjectId(v string) {
-	m.ProjectId = v
-}
-
-func (m *CellOutputsRequest) SetCellId(v string) {
-	m.CellId = v
-}
-
-func (m *CellOutputsRequest) SetCheckpointId(v string) {
-	m.CheckpointId = v
-}
-
-func (m *CellOutputsRequest) SetStartAt(v *timestamppb.Timestamp) {
-	m.StartAt = v
-}
-
-func (m *CellOutputsResponse) SetOutputs(v []string) {
-	m.Outputs = v
-}
-
-func (m *GetStateVariablesRequest) SetProjectId(v string) {
-	m.ProjectId = v
-}
-
-func (m *GetStateVariablesRequest) SetNotebookId(v string) {
-	m.NotebookId = v
-}
-
-func (m *GetStateVariablesRequest) SetVariableNames(v []string) {
-	m.VariableNames = v
-}
-
-func (m *GetStateVariablesRequest) SetCheckpointId(v string) {
-	m.CheckpointId = v
-}
-
-func (m *GetStateVariablesResponse) SetVariables(v *structpb.Struct) {
-	m.Variables = v
 }
 
 func (m *SetProjectAccessBindingsMetadata) SetProjectId(v string) {
@@ -259,4 +218,92 @@ func (m *SetProjectAccessBindingsMetadata) SetProjectId(v string) {
 
 func (m *UpdateProjectAccessBindingsMetadata) SetProjectId(v string) {
 	m.ProjectId = v
+}
+
+func (m *AddResourceToProjectRequest) SetProjectId(v string) {
+	m.ProjectId = v
+}
+
+func (m *AddResourceToProjectRequest) SetResourceType(v ResourceType) {
+	m.ResourceType = v
+}
+
+func (m *AddResourceToProjectRequest) SetResourceId(v string) {
+	m.ResourceId = v
+}
+
+func (m *RemoveResourceFromProjectRequest) SetProjectId(v string) {
+	m.ProjectId = v
+}
+
+func (m *RemoveResourceFromProjectRequest) SetResourceType(v ResourceType) {
+	m.ResourceType = v
+}
+
+func (m *RemoveResourceFromProjectRequest) SetResourceId(v string) {
+	m.ResourceId = v
+}
+
+func (m *GetProjectRestrictionsRequest) SetProjectId(v string) {
+	m.ProjectId = v
+}
+
+func (m *SetProjectRestrictionsRequest) SetProjectId(v string) {
+	m.ProjectId = v
+}
+
+func (m *SetProjectRestrictionsRequest) SetRestrictions(v []*Restriction) {
+	m.Restrictions = v
+}
+
+func (m *ResizeProjectDiskRequest) SetProjectId(v string) {
+	m.ProjectId = v
+}
+
+func (m *ResizeProjectDiskRequest) SetNewDiskSizeGb(v int64) {
+	m.NewDiskSizeGb = v
+}
+
+func (m *ResizeProjectDiskMetadata) SetProjectId(v string) {
+	m.ProjectId = v
+}
+
+func (m *ResizeProjectDiskMetadata) SetOldDiskSizeGb(v int64) {
+	m.OldDiskSizeGb = v
+}
+
+func (m *ResizeProjectDiskMetadata) SetNewDiskSizeGb(v int64) {
+	m.NewDiskSizeGb = v
+}
+
+func (m *DiskInfo) SetProjectId(v string) {
+	m.ProjectId = v
+}
+
+func (m *DiskInfo) SetDiskSizeGb(v float64) {
+	m.DiskSizeGb = v
+}
+
+func (m *DiskInfo) SetDiskUsedGb(v float64) {
+	m.DiskUsedGb = v
+}
+
+func (m *DiskInfo) SetDetailedUsage(v *DiskInfo_DetailedDiskInfo) {
+	m.DetailedUsage = v
+}
+
+func (m *DiskInfo_DetailedDiskInfo) SetUserDataGb(v float64) {
+	m.UserDataGb = v
+}
+
+func (m *DiskInfo_DetailedDiskInfo) SetPackagesGb(v float64) {
+	m.PackagesGb = v
+}
+
+func (m *DiskInfo_DetailedDiskInfo) SetSystemDataGb(v float64) {
+	m.SystemDataGb = v
+}
+
+func (m *DiskInfo_DetailedDiskInfo) SetFreeSpaceGb(v float64) {
+	m.FreeSpaceGb = v
 }
