@@ -53,6 +53,7 @@ type FileXattrs interface {
 }
 
 type Service struct {
+	csi.UnimplementedNodeServer
 	metadataGetter   instancemeta.MetadataGetter
 	mounter          *mount.SafeFormatAndMount
 	inFlight         inflight.InFlight

@@ -697,7 +697,7 @@ func TestNodeGetInfo(t *testing.T) {
 		},
 	}
 	require.NoError(t, err)
-	require.Equal(t, expected, res)
+	require.EqualExportedValues(t, expected, res)
 	fmt.Println("resp: ", res)
 }
 
