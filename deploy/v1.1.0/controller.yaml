@@ -1,0 +1,135 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yc-csi-controller
+  labels:
+    app: yc-csi-controller
+    component: csi-controller
+    tier: csi
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yc-csi-controller
+  template:
+    metadata:
+      labels:
+        app: yc-csi-controller
+    spec:
+      serviceAccountName: yc-csi-controller
+      containers:
+        - name: yc-csi-controller
+          args:
+            - --endpoint=$(ENDPOINT)
+            - --folder-id=$(FOLDER_ID)
+            - --logtostderr=true
+            - --sa-key=$(SA_KEY)
+            - --yc-api-endpoint=api.cloud.yandex.net:443
+          env:
+            - name: ENDPOINT
+              value: unix:///var/lib/csi/sockets/pluginproxy/csi.sock
+            - name: FOLDER_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: yc-csi-config
+                  key: folderId
+            - name: SA_KEY
+              value: /etc/yc-disk-csi-driver/sa-key.json
+          image: cr.yandex/crpsjg1coh47p81vh2lc/yc-csi-controller:v1.1.0
+          resources: {}
+          volumeMounts:
+            - name: sa-key
+              mountPath: "/etc/yc-disk-csi-driver"
+              readOnly: true
+            - name: socket-dir
+              mountPath: /var/lib/csi/sockets/pluginproxy
+            - name: log-directory
+              mountPath: /var/log
+        - name: csi-provisioner
+          args:
+            - --csi-address=$(ADDRESS)
+            - --feature-gates=Topology=true
+            - --leader-election-namespace=kube-system
+            - --leader-election=true
+            - --retry-interval-max=15s
+            - --timeout=30s
+            - --v=5
+          env:
+            - name: ADDRESS
+              value: /var/lib/csi/sockets/pluginproxy/csi.sock
+          image: registry.k8s.io/sig-storage/csi-provisioner:v3.6.3
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/csi/sockets/pluginproxy
+              name: socket-dir
+            - mountPath: /var/log
+              name: log-directory
+        - name: csi-attacher
+          command:
+            - /csi-attacher
+            - --csi-address=$(ADDRESS)
+            - --leader-election-namespace=kube-system
+            - --leader-election=true
+            - --retry-interval-max=15s
+            - --timeout=30s
+            - --v=5
+          env:
+            - name: ADDRESS
+              value: /var/lib/csi/sockets/pluginproxy/csi.sock
+          image: registry.k8s.io/sig-storage/csi-attacher:v4.4.3
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/csi/sockets/pluginproxy
+              name: socket-dir
+            - mountPath: /var/log
+              name: log-directory
+        - name: csi-liveness-probe
+          command:
+            - /livenessprobe
+            - --csi-address=$(ADDRESS)
+            - --health-port=9809
+            - --v=5
+          env:
+            - name: ADDRESS
+              value: /var/lib/csi/sockets/pluginproxy/csi.sock
+          image: registry.k8s.io/sig-storage/livenessprobe:v2.11.0
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/csi/sockets/pluginproxy
+              name: socket-dir
+            - mountPath: /var/log
+              name: log-directory
+        - name: csi-resizer
+          command:
+            - /csi-resizer
+            - --csi-address=$(ADDRESS)
+            - --leader-election-namespace=kube-system
+            - --leader-election=true
+            - --retry-interval-max=15s
+            - --timeout=30s
+            - --v=5
+          env:
+            - name: ADDRESS
+              value: /var/lib/csi/sockets/pluginproxy/csi.sock
+          image: registry.k8s.io/sig-storage/csi-resizer:v1.9.3
+          volumeMounts:
+            - mountPath: /var/lib/csi/sockets/pluginproxy
+              name: socket-dir
+            - mountPath: /var/log
+              name: log-directory
+      hostNetwork: true
+      priorityClassName: system-cluster-critical
+      volumes:
+        - name: socket-dir
+          emptyDir: {}
+        - name: log-directory
+          hostPath:
+            path: /var/log
+            type: DirectoryOrCreate
+        - name: sa-key
+          secret:
+            secretName: yc-csi-sa-key
+            items:
+              - key: sa-key.json
+                path: sa-key.json
