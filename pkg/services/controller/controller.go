@@ -33,6 +33,7 @@ import (
 )
 
 type controller struct {
+	csi.UnimplementedControllerServer
 	diskAPI      diskapi.DiskAPI
 	inFlight     inflight.InFlight
 	capabilities []*csi.ControllerServiceCapability
@@ -44,6 +45,11 @@ func New(diskapi diskapi.DiskAPI, inFlight inflight.InFlight, caps []*csi.Contro
 		inFlight:     inFlight,
 		capabilities: caps,
 	}
+}
+
+func (c *controller) ControllerModifyVolume(ctx context.Context, request *csi.ControllerModifyVolumeRequest) (*csi.ControllerModifyVolumeResponse, error) {
+	klog.Info("ControllerModifyVolume is unimplemented")
+	return nil, status.Error(codes.Unimplemented, "ControllerModifyVolume is unimplemented")
 }
 
 func (c *controller) ControllerGetVolume(ctx context.Context, request *csi.ControllerGetVolumeRequest) (*csi.ControllerGetVolumeResponse, error) {

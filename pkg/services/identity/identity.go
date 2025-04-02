@@ -28,6 +28,7 @@ import (
 )
 
 type Identity struct {
+	csi.UnimplementedIdentityServer
 	DriverName   string
 	Capabilities []*csi.PluginCapability
 }

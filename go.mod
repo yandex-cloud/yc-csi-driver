@@ -1,52 +1,54 @@
 module github.com/yandex-cloud/yc-csi-driver
 
-go 1.21
+go 1.23.0
+
+toolchain go1.23.7
 
 require (
-	github.com/container-storage-interface/spec v1.8.0
+	github.com/container-storage-interface/spec v1.11.0
 	github.com/google/uuid v1.6.0
 	github.com/kubernetes-csi/csi-test/v4 v4.4.0
 	github.com/mitchellh/go-testing-interface v1.14.1
 	github.com/onsi/ginkgo v1.16.5
-	github.com/onsi/gomega v1.30.0
-	github.com/stretchr/testify v1.9.0
-	github.com/yandex-cloud/go-genproto v0.0.0-20250304111827-f558b88ff434
-	github.com/yandex-cloud/go-sdk v0.0.0-20250304120247-c2605c41f59f
-	golang.org/x/net v0.28.0
-	google.golang.org/grpc v1.66.2
-	google.golang.org/protobuf v1.34.2
-	k8s.io/apimachinery v0.28.4
+	github.com/onsi/gomega v1.36.3
+	github.com/stretchr/testify v1.10.0
+	github.com/yandex-cloud/go-genproto v0.0.0-20250325081613-cd85d9003939
+	github.com/yandex-cloud/go-sdk v0.0.0-20250325134853-dcb34ef70818
+	golang.org/x/net v0.38.0
+	google.golang.org/grpc v1.71.0
+	google.golang.org/protobuf v1.36.6
+	k8s.io/apimachinery v0.32.3
 	k8s.io/klog v1.0.0
-	k8s.io/kubernetes v1.28.4
-	k8s.io/mount-utils v0.28.4
-	k8s.io/utils v0.0.0-20231127182322-b307cd553661
+	k8s.io/kubernetes v1.32.3
+	k8s.io/mount-utils v0.32.3
+	k8s.io/utils v0.0.0-20250321185631-1f6e0b77f77e
 )
 
 require (
-	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/fsnotify/fsnotify v1.6.0 // indirect
+	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
+	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/ghodss/yaml v1.0.0 // indirect
-	github.com/go-logr/logr v1.2.4 // indirect
-	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
-	github.com/golang/protobuf v1.5.4 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
-	github.com/hashicorp/errwrap v1.0.0 // indirect
+	github.com/go-logr/logr v1.4.2 // indirect
+	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
+	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
-	github.com/moby/sys/mountinfo v0.6.2 // indirect
-	github.com/nxadm/tail v1.4.8 // indirect
-	github.com/opencontainers/selinux v1.10.0 // indirect
-	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/moby/sys/mountinfo v0.7.2 // indirect
+	github.com/moby/sys/userns v0.1.0 // indirect
+	github.com/nxadm/tail v1.4.11 // indirect
+	github.com/opencontainers/selinux v1.12.0 // indirect
+	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
-	golang.org/x/sys v0.24.0 // indirect
-	golang.org/x/text v0.17.0 // indirect
-	google.golang.org/genproto v0.0.0-20240903143218-8af14fe29dc1 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240903143218-8af14fe29dc1 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240903143218-8af14fe29dc1 // indirect
+	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
+	google.golang.org/genproto v0.0.0-20250324211829-b45e905df463 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20250324211829-b45e905df463 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250324211829-b45e905df463 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/klog/v2 v2.100.1 // indirect
+	k8s.io/klog/v2 v2.130.1 // indirect
 )
 
 replace (
