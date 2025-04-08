@@ -8,6 +8,7 @@ A Container Storage Interface Driver for Yandex Compute Disks.
 | Driver Version | Supported k8s version |
 |----------------|-----------------------|
 | v1.0.0         | 1.21+                 |
+| v1.1.0         | 1.21+                 |
 
 ## Install on a Kubernetes cluster
 
