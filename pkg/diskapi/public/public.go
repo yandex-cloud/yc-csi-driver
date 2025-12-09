@@ -83,6 +83,7 @@ func (d *publicDiskAPI) CreateDisk(ctx context.Context, req *diskapi.CreateDiskR
 				Name:                req.Name,
 				Labels:              labels,
 				Size:                req.Size,
+				BlockSize:           req.BlockSize,
 				DiskPlacementPolicy: convertDiskPlacementPolicyToComputeAPI(req.DiskPlacementPolicy),
 				KmsKeyId:            req.KMSKeyID,
 			},
