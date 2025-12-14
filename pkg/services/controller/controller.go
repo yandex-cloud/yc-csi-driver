@@ -604,6 +604,17 @@ func (c *controller) createNewVolume(
 
 	diskAPIRequest.TypeID = volumeTypeID
 
+	blockSizeStr := parameters["blockSize"]
+	if blockSizeStr != "" {
+		blockSize, err := strconv.ParseInt(blockSizeStr, 10, 64)
+		if err != nil {
+			return nil, fmt.Errorf("failed to parse blockSize: %w", err)
+		}
+		diskAPIRequest.BlockSize = blockSize
+	}
+
+	klog.Infof("blockSize: %d", diskAPIRequest.BlockSize)
+
 	size, err := getVolumeSize(req.GetCapacityRange())
 	if err != nil {
 		return nil, err

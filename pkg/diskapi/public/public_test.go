@@ -40,26 +40,28 @@ import (
 )
 
 const (
-	zoneID               = "ru-central1-a"
-	diskName             = "NewVolume"
-	diskTypeID           = "mytype"
-	instanceID           = "NewInstance"
-	kmsKeyID             = "kms-key-id"
-	defaultDiskSizeBytes = 4 * 1024 * 1024 * 1024
+	zoneID                = "ru-central1-a"
+	diskName              = "NewVolume"
+	diskTypeID            = "mytype"
+	instanceID            = "NewInstance"
+	kmsKeyID              = "kms-key-id"
+	defaultDiskSizeBytes  = 4 * 1024 * 1024 * 1024
+	defaultBlockSizeBytes = 4 * 1024
 )
 
 type testResources struct {
-	t                    *testing.T
-	folderID             string
-	networkFolderID      string
-	clusterFolderID      string
-	networkID            string
-	zoneID               string
-	diskTypeID           string
-	diskName             string
-	testData             *testData
-	defaultDiskSizeBytes int64
-	kmsKeyID             string
+	t                     *testing.T
+	folderID              string
+	networkFolderID       string
+	clusterFolderID       string
+	networkID             string
+	zoneID                string
+	diskTypeID            string
+	diskName              string
+	testData              *testData
+	defaultDiskSizeBytes  int64
+	defaultBlockSizeBytes int64
+	kmsKeyID              string
 }
 
 type controllerTest struct {
@@ -76,11 +78,12 @@ func TestCreateDisk(t *testing.T) {
 	disk, err := test.diskapi.CreateDisk(
 		context.Background(),
 		&diskapi.CreateDiskRequest{
-			Name:     test.cloudRes.diskName,
-			ZoneID:   test.cloudRes.zoneID,
-			TypeID:   test.cloudRes.diskTypeID,
-			Size:     test.cloudRes.defaultDiskSizeBytes,
-			KMSKeyID: test.cloudRes.kmsKeyID,
+			Name:      test.cloudRes.diskName,
+			ZoneID:    test.cloudRes.zoneID,
+			TypeID:    test.cloudRes.diskTypeID,
+			Size:      test.cloudRes.defaultDiskSizeBytes,
+			BlockSize: test.cloudRes.defaultBlockSizeBytes,
+			KMSKeyID:  test.cloudRes.kmsKeyID,
 		})
 	require.NoError(t, err)
 	assert.Equal(t, disk.Name, test.cloudRes.diskName)
@@ -92,10 +95,11 @@ func TestExpandDisk(t *testing.T) {
 	disk, err := test.diskapi.CreateDisk(
 		context.Background(),
 		&diskapi.CreateDiskRequest{
-			Name:   test.cloudRes.diskName,
-			ZoneID: test.cloudRes.zoneID,
-			TypeID: test.cloudRes.diskTypeID,
-			Size:   test.cloudRes.defaultDiskSizeBytes,
+			Name:      test.cloudRes.diskName,
+			ZoneID:    test.cloudRes.zoneID,
+			TypeID:    test.cloudRes.diskTypeID,
+			Size:      test.cloudRes.defaultDiskSizeBytes,
+			BlockSize: test.cloudRes.defaultBlockSizeBytes,
 		})
 	require.NoError(t, err)
 	newSize := disk.Size + 4*1024*1024*1024
@@ -127,10 +131,11 @@ func TestDeleteDisk(t *testing.T) {
 	disk, err := test.diskapi.CreateDisk(
 		context.Background(),
 		&diskapi.CreateDiskRequest{
-			Name:   test.cloudRes.diskName,
-			ZoneID: test.cloudRes.zoneID,
-			TypeID: test.cloudRes.diskTypeID,
-			Size:   test.cloudRes.defaultDiskSizeBytes,
+			Name:      test.cloudRes.diskName,
+			ZoneID:    test.cloudRes.zoneID,
+			TypeID:    test.cloudRes.diskTypeID,
+			Size:      test.cloudRes.defaultDiskSizeBytes,
+			BlockSize: test.cloudRes.defaultBlockSizeBytes,
 		})
 	require.NoError(t, err)
 
@@ -168,10 +173,11 @@ func TestGetDisk(t *testing.T) {
 	disk, err := test.diskapi.CreateDisk(
 		context.Background(),
 		&diskapi.CreateDiskRequest{
-			Name:   test.cloudRes.diskName,
-			ZoneID: test.cloudRes.zoneID,
-			TypeID: test.cloudRes.diskTypeID,
-			Size:   test.cloudRes.defaultDiskSizeBytes,
+			Name:      test.cloudRes.diskName,
+			ZoneID:    test.cloudRes.zoneID,
+			TypeID:    test.cloudRes.diskTypeID,
+			Size:      test.cloudRes.defaultDiskSizeBytes,
+			BlockSize: test.cloudRes.defaultBlockSizeBytes,
 		})
 	require.NoError(t, err)
 
@@ -201,10 +207,11 @@ func TestGetDiskByName(t *testing.T) {
 	disk, err := test.diskapi.CreateDisk(
 		context.Background(),
 		&diskapi.CreateDiskRequest{
-			Name:   test.cloudRes.diskName,
-			ZoneID: test.cloudRes.zoneID,
-			TypeID: test.cloudRes.diskTypeID,
-			Size:   test.cloudRes.defaultDiskSizeBytes,
+			Name:      test.cloudRes.diskName,
+			ZoneID:    test.cloudRes.zoneID,
+			TypeID:    test.cloudRes.diskTypeID,
+			Size:      test.cloudRes.defaultDiskSizeBytes,
+			BlockSize: test.cloudRes.defaultBlockSizeBytes,
 		})
 
 	require.NoError(t, err)
@@ -225,10 +232,11 @@ func TestListDisks(t *testing.T) {
 	disk, err := test.diskapi.CreateDisk(
 		context.Background(),
 		&diskapi.CreateDiskRequest{
-			Name:   test.cloudRes.diskName,
-			ZoneID: test.cloudRes.zoneID,
-			TypeID: test.cloudRes.diskTypeID,
-			Size:   test.cloudRes.defaultDiskSizeBytes,
+			Name:      test.cloudRes.diskName,
+			ZoneID:    test.cloudRes.zoneID,
+			TypeID:    test.cloudRes.diskTypeID,
+			Size:      test.cloudRes.defaultDiskSizeBytes,
+			BlockSize: test.cloudRes.defaultBlockSizeBytes,
 		})
 	require.NoError(t, err)
 
