@@ -604,7 +604,7 @@ func (c *controller) createNewVolume(
 
 	diskAPIRequest.TypeID = volumeTypeID
 
-	blockSizeStr := parameters["blockSize"]
+	blockSizeStr := parameters[services.BlockSizeKey]
 	if blockSizeStr != "" {
 		blockSize, err := strconv.ParseInt(blockSizeStr, 10, 64)
 		if err != nil {

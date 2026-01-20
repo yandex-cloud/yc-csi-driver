@@ -37,6 +37,8 @@ const (
 	DiskPlacementGroupPartitionKey = "diskPlacementGroupPartition"
 
 	KMSKeyIDKey = "kmsKeyId"
+
+	BlockSizeKey = "blockSize"
 )
 
 var (
