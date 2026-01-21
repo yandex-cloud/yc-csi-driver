@@ -70,6 +70,7 @@ type CreateDiskRequest struct {
 	ZoneID              string
 	TypeID              string
 	Size                int64
+	BlockSize           int64
 	SnapshotID          string
 	DiskPlacementPolicy *DiskPlacementPolicy
 	KMSKeyID            string
