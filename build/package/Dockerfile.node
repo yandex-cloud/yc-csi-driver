@@ -10,9 +10,16 @@ RUN export REVISION=$(git rev-parse HEAD)
 RUN CGO_ENABLED=0 go build -a -ldflags '-X github.com/yandex-cloud/yc-csi-driver/pkg/version.gitRevision=${REVISION}' \
     -o /go/bin/yc-csi-driver-node github.com/yandex-cloud/yc-csi-driver/cmd/node
 
-FROM alpine:3.19
+FROM alpine:3.23
 
-RUN apk add --no-cache util-linux e2fsprogs blkid e2fsprogs-extra btrfs-progs
+RUN apk add --no-cache \
+        blkid \
+        btrfs-progs
+        e2fsprogs \
+        e2fsprogs-extra \
+        util-linux \
+        xfsprogs \
+        xfsprogs-extra
 
 COPY --from=builder /go/bin/yc-csi-driver-node /bin/yc-csi-driver-node
 
