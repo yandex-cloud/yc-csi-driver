@@ -305,6 +305,52 @@ func TestController_CreateVolume(t *testing.T) {
 	}
 }
 
+func TestController_CreateVolumePVCMetadata(t *testing.T) {
+	testCases := []struct {
+		name                 string
+		parameters           map[string]string
+		expectedPVCName      string
+		expectedPVCNamespace string
+	}{
+		{
+			name: "MetadataProvided",
+			parameters: map[string]string{
+				services.PVCNameKey:      "test-pvc",
+				services.PVCNamespaceKey: "test-namespace",
+			},
+			expectedPVCName:      "test-pvc",
+			expectedPVCNamespace: "test-namespace",
+		},
+		{
+			name:                 "MetadataNotProvided",
+			parameters:           map[string]string{},
+			expectedPVCName:      "",
+			expectedPVCNamespace: "",
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			d := &diskapimocks.DiskAPI{}
+			d.Mock.On("GetDiskByName", mock.Anything, mock.Anything).
+				Return(nil, status.Error(codes.NotFound, "NotFound")).Once()
+			d.Mock.On("CreateDisk", mock.Anything, mock.MatchedBy(func(req *diskapi.CreateDiskRequest) bool {
+				return req.PVCName == tc.expectedPVCName && req.PVCNamespace == tc.expectedPVCNamespace
+			})).Return(newDisk, nil).Once()
+
+			req := newVolumeRequest(newDisk, newDisk.Name, []*csi.VolumeCapability{volumeCapabilitiesWithFileSystemType})
+			for key, value := range tc.parameters {
+				req.Parameters[key] = value
+			}
+
+			c := New(d, inflight.NewWithTTL(), services.ProductionCapsForPublicAPIController)
+			_, err := c.CreateVolume(context.Background(), req)
+			require.NoError(t, err)
+			d.AssertExpectations(t)
+		})
+	}
+}
+
 func TestDeleteVolume(t *testing.T) {
 	d := &diskapimocks.DiskAPI{}
 	i := inflight.NewWithTTL()

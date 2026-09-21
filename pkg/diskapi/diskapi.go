@@ -67,6 +67,8 @@ type Snapshot struct {
 type CreateDiskRequest struct {
 	Name                string
 	CSIVolumeName       string
+	PVCName             string
+	PVCNamespace        string
 	ZoneID              string
 	TypeID              string
 	Size                int64
