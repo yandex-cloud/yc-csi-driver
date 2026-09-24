@@ -27,11 +27,12 @@ import (
 )
 
 var (
-	endpoint, cloudFolderID, saKeyFilePath, ycAPIEndpoint string
+	endpoint, cloudFolderID, saKeyFilePath, ycAPIEndpoint, driverName string
 )
 
 func init() {
 	flag.StringVar(&endpoint, "endpoint", "unix://tmp/csi.sock", "CSI Endpoint")
+	flag.StringVar(&driverName, "driver-name", "", "driver name to identify as for the CSI")
 	flag.StringVar(&ycAPIEndpoint, "yc-api-endpoint", "api.cloud.yandex.net:443",
 		"cloud compute API endpoint")
 	flag.StringVar(&cloudFolderID, "folder-id", "", "folder id to work in")
@@ -50,7 +51,7 @@ func main() {
 }
 
 func run() error {
-	opts, err := NewControllerOptions(endpoint, cloudFolderID, saKeyFilePath, ycAPIEndpoint)
+	opts, err := NewControllerOptions(endpoint, driverName, cloudFolderID, saKeyFilePath, ycAPIEndpoint)
 	if err != nil {
 		return err
 	}

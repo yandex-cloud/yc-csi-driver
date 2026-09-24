@@ -30,7 +30,7 @@ import (
 	"github.com/yandex-cloud/go-sdk/iamkey"
 )
 
-func NewControllerOptions(endpoint, cloudFolderID, saKeyFilePath, apiEndpoint string) (*controller.Options, error) {
+func NewControllerOptions(endpoint, driverName, cloudFolderID, saKeyFilePath, apiEndpoint string) (*controller.Options, error) {
 	if len(saKeyFilePath) == 0 {
 		return nil, errors.New("no saKeyFilePath provided")
 	}
@@ -62,7 +62,7 @@ func NewControllerOptions(endpoint, cloudFolderID, saKeyFilePath, apiEndpoint st
 
 	return &controller.Options{
 		Endpoint:     endpoint,
-		DriverName:   "", // Not required.
+		DriverName:   driverName,
 		DiskAPI:      diskAPI,
 		Capabilities: services.ProductionCapsForPublicAPIController,
 	}, nil
