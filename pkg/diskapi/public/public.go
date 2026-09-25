@@ -68,6 +68,8 @@ func (d *publicDiskAPI) GetSnapshotByName(context.Context, *diskapi.GetSnapshotB
 func (d *publicDiskAPI) CreateDisk(ctx context.Context, req *diskapi.CreateDiskRequest) (*diskapi.Disk, error) {
 	labels := csiLabels()
 	labels["csi-volume-name"] = req.CSIVolumeName
+	labels["csi-pvc-name"] = req.PVCName
+	labels["csi-pvc-namespace"] = req.PVCNamespace
 
 	if req.ZoneID == "" {
 		return nil, status.Errorf(codes.InvalidArgument, "zoneID required by diskService (req: %+v)", req)

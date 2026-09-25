@@ -596,6 +596,8 @@ func (c *controller) createNewVolume(
 	klog.Infof("Creating new volume %+v", req)
 
 	parameters := req.GetParameters()
+	diskAPIRequest.PVCName = parameters[services.PVCNameKey]
+	diskAPIRequest.PVCNamespace = parameters[services.PVCNamespaceKey]
 
 	volumeTypeID := util.GetOrDefaultStringFromMap(parameters, services.VolumeTypeKey, services.DefaultVolumeType)
 	if volumeTypeID == "network-nvme" {

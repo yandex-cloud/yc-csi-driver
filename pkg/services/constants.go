@@ -39,6 +39,9 @@ const (
 	KMSKeyIDKey = "kmsKeyId"
 
 	BlockSizeKey = "blockSize"
+
+	PVCNameKey      = "csi.storage.k8s.io/pvc/name"
+	PVCNamespaceKey = "csi.storage.k8s.io/pvc/namespace"
 )
 
 var (
