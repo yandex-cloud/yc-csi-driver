@@ -172,6 +172,10 @@ func (n *Service) NodeStageVolume(ctx context.Context, req *csi.NodeStageVolumeR
 	// If the volume corresponding to the volume_id is already staged to the staging_target_path,
 	if deviceFromMount == device {
 		klog.Infof("StageVolume: volume ( %s ) already staged", volumeID)
+		// A previous attempt may have mounted the volume but failed to resize it.
+		if err := n.resizeStagedVolume(req, device); err != nil {
+			return nil, err
+		}
 		return &csi.NodeStageVolumeResponse{}, nil
 	}
 
@@ -216,7 +220,40 @@ func (n *Service) NodeStageVolume(ctx context.Context, req *csi.NodeStageVolumeR
 		return nil, status.Error(codes.Internal, msg)
 	}
 
+	if err := n.resizeStagedVolume(req, device); err != nil {
+		return nil, err
+	}
+
 	return &csi.NodeStageVolumeResponse{}, nil
+}
+
+// resizeStagedVolume handles filesystems restored or cloned onto a larger device.
+// Run after mounting, since some filesystems can only be grown while mounted.
+func (n *Service) resizeStagedVolume(req *csi.NodeStageVolumeRequest, device string) error {
+	if services.NodeStageRO(req.GetPublishContext()) {
+		return nil
+	}
+	for _, option := range req.GetVolumeCapability().GetMount().GetMountFlags() {
+		if option == "ro" {
+			return nil
+		}
+	}
+
+	target := req.GetStagingTargetPath()
+	resizer := mount.NewResizeFs(n.mounter.Exec)
+	needResize, err := resizer.NeedResize(device, target)
+	if err != nil {
+		return status.Errorf(codes.Internal, "could not check if device %q mounted at %q needs filesystem resize: %v", device, target, err)
+	}
+	if !needResize {
+		return nil
+	}
+
+	klog.Infof("StageVolume: resizing filesystem on %s mounted at %s", device, target)
+	if _, err := resizer.Resize(device, target); err != nil {
+		return status.Errorf(codes.Internal, "could not resize filesystem on device %q mounted at %q: %v", device, target, err)
+	}
+	return nil
 }
 
 func (n *Service) NodeUnstageVolume(ctx context.Context, req *csi.NodeUnstageVolumeRequest) (*csi.NodeUnstageVolumeResponse, error) {
