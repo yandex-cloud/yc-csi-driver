@@ -202,6 +202,9 @@ func TestNodeGetVolumeStats(t *testing.T) {
 }
 
 func TestNodeStageVolume(t *testing.T) {
+	if runtime.GOOS != "linux" {
+		t.Skip("filesystem resize is only supported on Linux")
+	}
 	var expectedOpts []string
 	mountTargetPathPrefix := ""
 	expectedOpts = []string{"defaults"}
@@ -456,6 +459,174 @@ func TestNodeStageVolume(t *testing.T) {
 			}
 			if !equalMountPoints(tc.fakeMounter.MountPoints, tc.expMountPoints) {
 				t.Fatalf("Expected mount points {%+v}, got {%+v}", tc.expMountPoints, tc.fakeMounter.MountPoints)
+			}
+		})
+	}
+}
+
+func TestNodeStageVolumeFilesystemResize(t *testing.T) {
+	if runtime.GOOS != "linux" {
+		t.Skip("filesystem resize is only supported on Linux")
+	}
+	testCases := []struct {
+		name          string
+		fsType        string
+		largerDevice  bool
+		alreadyStaged bool
+		readOnly      bool
+		mountFlags    []string
+		deviceRO      bool
+		block         bool
+		failCommand   string
+		retry         bool
+		wantCheck     bool
+		wantResize    bool
+		wantCode      codes.Code
+	}{
+		{name: "same size", fsType: services.FsTypeExt4, wantCheck: true},
+		{name: "restored ext4 on larger device", fsType: services.FsTypeExt4, largerDevice: true, wantCheck: true, wantResize: true},
+		{name: "restored ext3 on larger device", fsType: services.FsTypeExt3, largerDevice: true, wantCheck: true, wantResize: true},
+		{name: "default filesystem", largerDevice: true, wantCheck: true, wantResize: true},
+		{name: "already staged", fsType: services.FsTypeExt4, largerDevice: true, alreadyStaged: true, wantCheck: true, wantResize: true},
+		{name: "read only publish context", largerDevice: true, readOnly: true},
+		{name: "read only mount flag", largerDevice: true, mountFlags: []string{"ro"}},
+		{name: "already staged read only", largerDevice: true, alreadyStaged: true, readOnly: true},
+		{name: "read only device", largerDevice: true, deviceRO: true, wantCheck: true},
+		{name: "raw block", largerDevice: true, block: true},
+		{name: "device mode check fails", failCommand: "blockdev --getro", wantCheck: true, wantCode: codes.Internal},
+		{name: "device size check fails", failCommand: "blockdev --getsize64", wantCheck: true, wantCode: codes.Internal},
+		{name: "filesystem size check fails", failCommand: "dumpe2fs", wantCheck: true, wantCode: codes.Internal},
+		{name: "resize fails", largerDevice: true, failCommand: "resize2fs", wantCheck: true, wantResize: true, wantCode: codes.Internal},
+		{name: "retry after resize failure", largerDevice: true, failCommand: "resize2fs", retry: true, wantCheck: true, wantResize: true, wantCode: codes.Internal},
+		{name: "retry after size check failure", largerDevice: true, failCommand: "dumpe2fs", retry: true, wantCheck: true, wantCode: codes.Internal},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			target := t.TempDir()
+			fsType := tc.fsType
+			if fsType == "" {
+				fsType = services.DefaultFsType
+			}
+			volCap := setVolCap(tc.fsType)
+			volCap.GetMount().MountFlags = tc.mountFlags
+			if tc.block {
+				volCap.AccessType = &csi.VolumeCapability_Block{Block: &csi.VolumeCapability_BlockVolume{}}
+			}
+			req := &csi.NodeStageVolumeRequest{
+				VolumeId:          volumeID,
+				StagingTargetPath: target,
+				VolumeCapability:  volCap,
+			}
+			if tc.readOnly {
+				req.PublishContext = map[string]string{"MULTI_NODE_READER_ONLY": "true"}
+			}
+
+			mounter := mount.NewFakeMounter(nil)
+			if tc.alreadyStaged {
+				mounter.MountPoints = []mount.MountPoint{{Device: fakeDiskPath, Path: target, Type: fsType}}
+			}
+			hostUtil := &fakeHostUtil{
+				FakeHostUtil: hostutil.NewFakeHostUtil(map[string]hostutil.FileType{
+					fakeDiskPath:    hostutil.FileTypeBlockDev,
+					fakeDiskSymlink: hostutil.FileTypeFile,
+					target:          hostutil.FileTypeDirectory,
+				}),
+				FakeDeviceSymlinks: map[string]string{fakeDiskSymlink: fakeDiskPath},
+			}
+			driver := NewTestNodeService(mounter, hostUtil, &fakeFileXattrs{},
+				NewFakeMetadataGetter(fakeInstID, fakeZoneID), services.ProductionNodeCaps)
+
+			const originalBlocks = 262144 // 1 GiB with 4096-byte blocks.
+			fsBlocks := originalBlocks
+			deviceBytes := int64(originalBlocks * 4096)
+			if tc.largerDevice {
+				deviceBytes *= 2
+			}
+			var checkCalls, resizeCalls int
+			failCommand := tc.failCommand
+			driver.mounter.Exec = &fakeExec{runHook: func(cmd string, args ...string) ([]byte, error) {
+				key := cmd
+				if cmd == "blockdev" {
+					require.Len(t, args, 2)
+					require.Equal(t, fakeDiskPath, args[1])
+					key += " " + args[0]
+				}
+				if key == "blockdev --getro" {
+					checkCalls++
+				}
+				if cmd == "blockdev" || cmd == "resize2fs" {
+					// Both checking and growing must happen after the staging mount.
+					device, _, err := mount.GetDeviceNameFromMount(mounter, target)
+					require.NoError(t, err)
+					require.Equal(t, fakeDiskPath, device)
+				}
+				if cmd == "resize2fs" {
+					resizeCalls++
+					require.Equal(t, []string{fakeDiskPath}, args)
+				}
+				if key == failCommand {
+					return nil, errors.New("injected command failure")
+				}
+				switch key {
+				case "blkid":
+					return []byte("DEVNAME=" + fakeDiskPath + "\nTYPE=" + fsType + "\n"), nil
+				case "blockdev --getro":
+					if tc.deviceRO {
+						return []byte("1\n"), nil
+					}
+					return []byte("0\n"), nil
+				case "blockdev --getsize64":
+					return []byte(fmt.Sprintf("%d\n", deviceBytes)), nil
+				case "dumpe2fs":
+					require.Equal(t, []string{"-h", fakeDiskPath}, args)
+					return []byte(fmt.Sprintf("Block count: %d\nBlock size: 4096\n", fsBlocks)), nil
+				case "resize2fs":
+					fsBlocks = int(deviceBytes / 4096)
+					return nil, nil
+				case "fsck":
+					return nil, nil
+				default:
+					t.Errorf("unexpected command: %s %v", cmd, args)
+					return nil, fmt.Errorf("unexpected command: %s", cmd)
+				}
+			}}
+
+			resp, err := driver.NodeStageVolume(context.Background(), req)
+			require.Equal(t, tc.wantCode, status.Code(err), "stage error: %v", err)
+			if tc.wantCode == codes.OK {
+				require.NotNil(t, resp)
+			} else {
+				require.Nil(t, resp)
+				require.Contains(t, err.Error(), "injected command failure")
+				require.Contains(t, err.Error(), target)
+				require.Contains(t, err.Error(), fakeDiskPath)
+			}
+			require.Equal(t, tc.wantCheck, checkCalls > 0)
+			require.Equal(t, tc.wantResize, resizeCalls > 0)
+
+			if tc.retry {
+				// The mount survives a resize/check failure. Retrying must finish
+				// the resize, and another successful retry must be a no-op.
+				failCommand = ""
+				resp, err = driver.NodeStageVolume(context.Background(), req)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.Equal(t, int(deviceBytes/4096), fsBlocks)
+				callsAfterResize := resizeCalls
+				resp, err = driver.NodeStageVolume(context.Background(), req)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.Equal(t, callsAfterResize, resizeCalls)
+			}
+
+			wantMounts := 1
+			if tc.block || tc.alreadyStaged {
+				wantMounts = 0
+			}
+			require.Len(t, mounter.GetLog(), wantMounts, "must not remount on retry")
+			if wantMounts == 1 {
+				require.Equal(t, "mount", mounter.GetLog()[0].Action)
 			}
 		})
 	}

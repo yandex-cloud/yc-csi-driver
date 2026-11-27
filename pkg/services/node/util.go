@@ -130,6 +130,13 @@ func fakeRunHook(cmd string, args ...string) ([]byte, error) {
 	// Fake blkid cmd output.
 	case "blkid":
 		return []byte(`DEVNAME=/dev/vdb` + "\n" + `TYPE=ext4`), nil
+	case "blockdev":
+		if len(args) > 0 && args[0] == "--getro" {
+			return []byte("0\n"), nil
+		}
+		return []byte("1073741824\n"), nil
+	case "dumpe2fs":
+		return []byte("Block count: 262144\nBlock size: 4096\n"), nil
 	}
 
 	return nil, nil
